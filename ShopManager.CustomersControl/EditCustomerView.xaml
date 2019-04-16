@@ -1,0 +1,108 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopManager.CustomersControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:conv="clr-namespace:ShopManager.helper;assembly=ShopManager.helper"
+             xmlns:Models="clr-namespace:ShopManager.Models;assembly=ShopManager.Models" x:Class="ShopManager.CustomersControl.EditCustomerView"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.Resources>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True" />
+         <ResourceDictionary x:Key="txt">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary> 
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self}, 
+                                    Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid1" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Stretch"  DataContext="{Binding Customer}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Address 1:"/>
+            <TextBox x:Name="address1TextBox" materialDesign:HintAssist.Hint="Address" VerticalAlignment="Stretch" Text="{Binding Address1, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="0" Margin="3" Height="22" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="address 2:"/>
+            <TextBox x:Name="address2TextBox" Width="500" VerticalAlignment="Center" Text="{Binding Address2, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="address 3:"/>
+            <TextBox x:Name="address3TextBox" Width="500" VerticalAlignment="Center" Text="{Binding address3, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Address 4:"/>
+            <TextBox x:Name="address4TextBox" Width="500" VerticalAlignment="Center" Text="{Binding Address4, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="address 5:"/>
+            <TextBox x:Name="address5TextBox" Width="500" VerticalAlignment="Center" Text="{Binding address5, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Company Name:"/>
+            <TextBox x:Name="companyNameTextBox" Width="500" VerticalAlignment="Center" Text="{Binding CompanyName, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Contact Name:"/>
+            <TextBox x:Name="contactNameTextBox" Width="500" VerticalAlignment="Center" Text="{Binding ContactName, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Customer Ac:"/>
+            <TextBox x:Name="customerAcTextBox" Width="500" VerticalAlignment="Center" Text="{Binding CustomerAc, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="8" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Email:"/>
+            <TextBox x:Name="emailTextBox" Width="500" VerticalAlignment="Center" Text="{Binding Email, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="8" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="9" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Fax:"/>
+            <TextBox x:Name="faxTextBox" Width="500" VerticalAlignment="Center" Text="{Binding Fax, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="9" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="10" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Note Pad:"/>
+            <TextBox x:Name="notePadTextBox" Width="500" VerticalAlignment="Center" Text="{Binding NotePad, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="10" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="11" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone:"/>
+            <TextBox x:Name="phoneTextBox" Width="500" VerticalAlignment="Center" Text="{Binding Phone, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="11" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="12" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Post Code:"/>
+            <TextBox x:Name="postCodeTextBox" Width="500" VerticalAlignment="Center" Text="{Binding PostCode, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="12" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="13" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Web Page:"/>
+            <TextBox x:Name="webPageTextBox" Width="500" VerticalAlignment="Center" Text="{Binding WebPage, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="13" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Content="Save" Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource VisConverter}}"
+                    Margin="25,5,0,0"
+                    VerticalAlignment="Top"
+                    Width="75"/>
+            <Button Content="Add"
+                    Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource NegVisConverter}}"
+                    HorizontalAlignment="Left"
+                    Margin="25,5,0,0"
+                    VerticalAlignment="Top"
+                    Width="75" />
+            <Button Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    HorizontalAlignment="Left"
+                    Margin="150,5,0,0"
+                    VerticalAlignment="Top"
+                    Width="75" />
+        </Grid>
+    </Grid>
+</UserControl>

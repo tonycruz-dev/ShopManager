@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="ShopManager.ProductControl.UserControlOrderItems"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopManager.ProductControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="29*"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding OrderItems}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding QTYOrder}"  Width="80" Header="Order"/>
+                <DataGridTextColumn Binding="{Binding Quantity}"  Width="80" Header="Qty"/>
+                <DataGridTextColumn Binding="{Binding Shortage}" IsReadOnly="True" Width="80" Header="Short"/>
+                <DataGridTextColumn Binding="{Binding ProductID}" IsReadOnly="True" Width="100" Header="Code"/>
+                <DataGridTextColumn Binding="{Binding Description}" IsReadOnly="True"  Width="*" Header="Description"/>
+                <DataGridTemplateColumn Width="90" Header="Price">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UnitPrice, StringFormat={}{0:C},ConverterCulture=en-GB}" TextAlignment="Right"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="70" Header="Dis%">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Discount, StringFormat={}{0:C},ConverterCulture=en-GB}" TextAlignment="Right"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="100" Header="Total">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TotalPrice, StringFormat={}{0:C},ConverterCulture=en-GB}" TextAlignment="Right"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>         
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1" DataContext="{Binding Order}" >
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,5,0" Grid.Row="1" TextWrapping="Wrap" Text="£150.00" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,109,0" Grid.Row="1" TextWrapping="Wrap" Text="Total Net:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,5,0" Grid.Row="1" TextWrapping="Wrap" Text="£30.00" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,109,0" Grid.Row="1" TextWrapping="Wrap" Text="VAT:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,5,0" Grid.Row="1" TextWrapping="Wrap" Text="£180.00" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,109,0" Grid.Row="1" TextWrapping="Wrap" Text="TOTAL:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+            <Button Content="Send Cash Invoice" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+            <Button Content="Send Account Invoice" HorizontalAlignment="Left" Margin="195,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+            <Button Content="Send Estimat" HorizontalAlignment="Left" Margin="380,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+            <Button Content="Print" HorizontalAlignment="Left" Margin="10,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+        </Grid>
+        <Grid Grid.Row="2" DataContext="{Binding Order}">
+            <TextBlock HorizontalAlignment="Left" Height="25" Margin="92,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="201913040835" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
+            <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Number:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+            <TextBlock HorizontalAlignment="Left" Height="25" Margin="428,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="13/04/2019" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
+            <TextBlock HorizontalAlignment="Left" Height="25" Margin="346,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Date:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+            <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,149,0" Grid.Row="2" TextWrapping="Wrap" Text="Ref:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+            <TextBox HorizontalAlignment="Right" Height="25" Margin="0,10,5,0" Grid.Row="2" TextWrapping="Wrap" FontSize="16" TextAlignment="Right" Text="Fix data" VerticalAlignment="Top" Width="126"/>
+            <TextBox HorizontalAlignment="Left" Height="168" Margin="10,72,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Top" Width="385"/>
+            <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,42,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Customer Details:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="136"/>
+            <TextBox HorizontalAlignment="Left" Height="168" Margin="505,72,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Top" Width="385"/>
+            <TextBlock HorizontalAlignment="Left" Height="25" Margin="505,42,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Delivery Address:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="136"/>
+        </Grid>
+    </Grid>
+</UserControl>

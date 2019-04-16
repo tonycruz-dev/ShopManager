@@ -1,0 +1,15 @@
+Install-Package Unity -Version 5.8.6
+Install-Package MaterialDesignThemes -Version 2.5.1
+Install-Package AutoMapper -Version 8.0.0
+Install-Package EntityFramework -Version 6.2.0
+Install-Package Microsoft.SDK.Expression.Blend -Version 1.0.0
+ <connectionStrings>
+    <add name="ModelShopManager" connectionString="data source=.\SQLEXPRESS;initial catalog=ShopManager;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+
+  xmlns:conv="clr-namespace:ShopManager.helper;assembly=ShopManager.helper"
+
+  <UserControl.Resources>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True" />
+  </UserControl.Resources>
