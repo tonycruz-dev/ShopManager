@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="Repository\IOrderRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="ViewModel\ChangeOrderQuantity.cs" />
     <Compile Include="ViewModel\ReportsOrderModel.cs" />
     <Compile Include="Views\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>

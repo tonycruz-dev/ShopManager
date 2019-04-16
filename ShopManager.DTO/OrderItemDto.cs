@@ -21,6 +21,7 @@ namespace ShopManager.DTO
         private decimal _SubTotal;
         private int _Shortage;
         private decimal _TotalPrice;
+        private int _StockId;
         public int Id
         {
             get
@@ -30,6 +31,17 @@ namespace ShopManager.DTO
             set
             {
                 SetProperty(ref _Id, value);
+            }
+        }
+        public int StockId
+        {
+            get
+            {
+                return _StockId;
+            }
+            set
+            {
+                SetProperty(ref _StockId, value);
             }
         }
         public int? OrderID

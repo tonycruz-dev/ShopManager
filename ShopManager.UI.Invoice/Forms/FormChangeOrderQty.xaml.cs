@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopManager.UI.Invoice.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,14 @@ namespace ShopManager.UI.Invoice.Forms
     /// </summary>
     public partial class FormChangeOrderQty : Window
     {
-        public FormChangeOrderQty()
+        private readonly ChangeOrderQuantity _editOrderItem;
+
+        public FormChangeOrderQty(ChangeOrderQuantity editOrderItem)
         {
             InitializeComponent();
+            _editOrderItem = editOrderItem;
+            DataContext = _editOrderItem;
+            
         }
     }
 }

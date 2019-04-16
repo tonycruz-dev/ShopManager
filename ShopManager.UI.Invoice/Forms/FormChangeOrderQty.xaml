@@ -8,11 +8,11 @@
         mc:Ignorable="d"
         Title="Change Order Qty" Height="269.078" Width="239.863" FontSize="16" >
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="34,38,0,0" TextWrapping="Wrap" Text="{Binding OrderItemQuantity}" materialDesign:TransitionAssist.DisableTransitions="True" VerticalAlignment="Top" Width="151"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="34,38,0,0" TextWrapping="Wrap" Text="{Binding QuantityOrder}" materialDesign:TransitionAssist.DisableTransitions="True" VerticalAlignment="Top" Width="151"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,10,0,0" TextWrapping="Wrap" Text="Qty Required" VerticalAlignment="Top" Width="151" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="34,94,0,0" TextWrapping="Wrap" Text="{Binding Product.QtyInStock}" VerticalAlignment="Top" Width="151"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="34,94,0,0" TextWrapping="Wrap" Text="{Binding QuantityInStock}" VerticalAlignment="Top" Width="151"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,66,0,0" TextWrapping="Wrap" Text="Qty In Stock" VerticalAlignment="Top" Width="151" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="34,156,0,0" TextWrapping="Wrap" Text="{Binding Product.QtyInStock}" VerticalAlignment="Top" Width="151"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="34,156,0,0" TextWrapping="Wrap" Text="{Binding Allocated}" VerticalAlignment="Top" Width="151"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,128,0,0" TextWrapping="Wrap" Text="Alocated" VerticalAlignment="Top" Width="151" Height="23"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Height="29" Margin="10,193,0,0" VerticalAlignment="Top" Width="84"/>
         <Button Content="Save" HorizontalAlignment="Left" Height="29" Margin="138,193,0,0" VerticalAlignment="Top" Width="84"/>

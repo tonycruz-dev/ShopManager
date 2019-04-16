@@ -20,8 +20,8 @@ namespace ShopManager.UI.Invoice.Views
         private readonly IMapper _mapper;
         private ObservableCollection<ProductDto> _products;
         private ObservableCollection<OrderItemDto> _orderItems;
-
         private string _SearchInput;
+
 
  
 
@@ -70,11 +70,17 @@ namespace ShopManager.UI.Invoice.Views
             set { SetProperty(ref _orderItems, value); }
         }
         private OrderDto _Order;
-
         public OrderDto Order
         {
             get { return _Order; }
             set { SetProperty(ref _Order, value); }
+        }
+
+        private ChangeOrderQuantity _EditOrderQuantity;
+        public ChangeOrderQuantity EditOrderQuantity
+        {
+            get { return _EditOrderQuantity; }
+            set { SetProperty(ref _EditOrderQuantity, value); }
         }
 
         public string SearchInput
@@ -131,6 +137,7 @@ namespace ShopManager.UI.Invoice.Views
             item.UnitPrice = product.UnitPrice;
             item.Discount = 0;
             item.TotalPrice = product.UnitPrice;
+            item.StockId = product.ProductID;
             OrderItems.Add(item);
             //v2 = v1 ?? default(int);
             Order.TotalValue = Order.TotalValue + item.TotalPrice;
@@ -207,22 +214,15 @@ namespace ShopManager.UI.Invoice.Views
             printReport.ReportViewer.ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None;
             printReport.ReportViewer.ViewerCore.ReportSource = _OrderRepot;
             printReport.Show();
-       //     Dim EstimateReport As New AccountEstimate
-
-            //ObjModel = EstimateViewSource.View.CurrentItem
-
-
-            // Dim rpt = ReportHelper.GetReportsAccountEstimate(ObjModel.InvoiceID)
-            // EstimateReport.SetDataSource(rpt)
-            // Dim printReport As New FormPrintPreview
-            // With printReport.ReportViewer
-            //     .ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None
-            //     .ViewerCore.ReportSource = EstimateReport
-            // End With
-            // printReport.Show()
-
         }
-            
+        private void OnEditOrder(OrderItemDto item)
+        {
+            var product = _allProducts.Where(p => p.ProductID == item.StockId).SingleOrDefault();
+            EditOrderQuantity.ProductCode = product.ProductCode;
+            EditOrderQuantity.QuantityOrder = item.QTYOrder ?? default;
+            EditOrderQuantity.QuantityInStock = product.QtyOnOrder ?? default;
+            EditOrderQuantity.ProductId = item.StockId;
+        }
     
 
     }
