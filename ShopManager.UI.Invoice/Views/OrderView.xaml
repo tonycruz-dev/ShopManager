@@ -166,6 +166,13 @@
                                 <materialDesign:PackIcon  Kind="DeleteForever" Foreground="Red" />
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="Edit Basket" 
+                                  Command="{Binding EditOrderItemCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon  Kind="Basket" Foreground="SaddleBrown" />
+                            </MenuItem.Icon>
+                        </MenuItem>
                        
                     </ContextMenu>
                 </DataGrid.ContextMenu>

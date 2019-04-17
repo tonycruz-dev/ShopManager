@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ShopManager.DTO;
 using ShopManager.helper;
+using ShopManager.UI.Invoice.Forms;
 using ShopManager.UI.Invoice.Reports;
 using ShopManager.UI.Invoice.Repository;
 using ShopManager.UI.Invoice.ViewModel;
@@ -8,12 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManager.UI.Invoice.Views
 {
-   public class OrderViewModel:BindableBase
+    public class OrderViewModel:BindableBase
     {
         private IOrderRepository  _repo;
         private List<ProductDto> _allProducts;
@@ -34,6 +33,7 @@ namespace ShopManager.UI.Invoice.Views
             SubmitSearchCommand = new RelayCommand<string>(OnSearchProductCode);
             ClearSearchCommand = new RelayCommand(OnClearSearch);
             PrintRecordCommand = new RelayCommand(PrintRecord);
+            EditOrderItemCommand = new RelayCommand<OrderItemDto>(OnEditOrder);
             SetOrder();
         }
 
@@ -120,6 +120,7 @@ namespace ShopManager.UI.Invoice.Views
         public RelayCommand<string> SubmitSearchCommand { get; private set; }
         public RelayCommand<ProductDto> AddProductOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> RemoveOrderItemCommand { get; private set; }
+        public RelayCommand<OrderItemDto> EditOrderItemCommand { get; private set; }
         public RelayCommand PrintRecordCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
 
@@ -139,24 +140,14 @@ namespace ShopManager.UI.Invoice.Views
             item.TotalPrice = product.UnitPrice;
             item.StockId = product.ProductID;
             OrderItems.Add(item);
-            //v2 = v1 ?? default(int);
-            Order.TotalValue = Order.TotalValue + item.TotalPrice;
-            var tov = Order.TotalValue ?? default(decimal);
-            var vatval = (double)tov * 0.2;
-            Order.TotalVAT = (decimal)vatval;
-            Order.TotalPaid = tov + Order.TotalVAT;
+            CalculateTotal();
 
             //throw new NotImplementedException();
         }
         private void OnRemoveOrderItems(OrderItemDto item)
         {
-            Order.TotalValue = Order.TotalValue - item.TotalPrice;
-            var tov = Order.TotalValue ?? default(decimal);
-            var vatval = (double)tov * 0.2;
-            Order.TotalVAT = (decimal)vatval;
-            Order.TotalPaid = tov + Order.TotalVAT;
-
             OrderItems.Remove(item);
+            CalculateTotal();
         }
         private void OnClearSearch()
         {
@@ -218,10 +209,40 @@ namespace ShopManager.UI.Invoice.Views
         private void OnEditOrder(OrderItemDto item)
         {
             var product = _allProducts.Where(p => p.ProductID == item.StockId).SingleOrDefault();
-            EditOrderQuantity.ProductCode = product.ProductCode;
-            EditOrderQuantity.QuantityOrder = item.QTYOrder ?? default;
-            EditOrderQuantity.QuantityInStock = product.QtyOnOrder ?? default;
-            EditOrderQuantity.ProductId = item.StockId;
+            EditOrderQuantity = new ChangeOrderQuantity
+            {
+                ProductCode = product.ProductCode,
+                QuantityOrder = item.QTYOrder ?? default(int),
+                QuantityInStock = product.QtyOnOrder ?? default(int),
+                ProductId = item.StockId
+
+            };
+
+            var FormChangwQuantity = new FormChangeOrderQty(EditOrderQuantity);
+            if (FormChangwQuantity.ShowDialog() == true)
+            {
+                item.QTYOrder = EditOrderQuantity.QuantityOrder;
+                item.Quantity = EditOrderQuantity.Allocated;
+                item.Shortage = EditOrderQuantity.QuantityOrder - EditOrderQuantity.Allocated;
+                item.TotalPrice = EditOrderQuantity.Allocated * item.UnitPrice ?? default(decimal);
+                CalculateTotal();
+            }
+
+        }
+        private void CalculateTotal()
+        {
+            decimal SumTotal = 0;
+            foreach (var item in OrderItems)
+            {
+                 item.SubTotal = item.Quantity * item.UnitPrice ?? default(decimal);
+                SumTotal = SumTotal + item.SubTotal;
+
+            }
+            Order.TotalValue = SumTotal;
+            var tov = Order.TotalValue ?? default(decimal);
+            var vatval = (double)tov * 0.2;
+            Order.TotalVAT = (decimal)vatval;
+            Order.TotalPaid = tov + Order.TotalVAT;
         }
     
 

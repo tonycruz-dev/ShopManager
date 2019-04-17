@@ -13,7 +13,11 @@ namespace ShopManager.UI.Invoice.ViewModel
         public int QuantityOrder
         {
             get { return _QuantityOrder; }
-            set { SetProperty(ref _QuantityOrder, value); }
+            set
+            {
+                SetProperty(ref _QuantityOrder, value);
+                CalculateQuantity();
+            }
         }
 
         private int _QuantityInStock;
@@ -23,14 +27,20 @@ namespace ShopManager.UI.Invoice.ViewModel
             set
             {
                 SetProperty(ref _QuantityInStock, value);
+                CalculateQuantity();
+
             }
         }
-
+        private int _Allocated;
         public int Allocated
         {
             get
             {
-                return QuantityInStock - QuantityOrder;
+                return _Allocated;
+            }
+            set
+            {
+                SetProperty(ref _Allocated, value);
             }
         }
         private string _ProductCode;
@@ -51,7 +61,19 @@ namespace ShopManager.UI.Invoice.ViewModel
                 SetProperty(ref _ProductId, value);
             }
         }
-
+        private int CalculateQuantity()
+        {
+            if (QuantityOrder > QuantityInStock)
+            {
+                Allocated = QuantityInStock;
+                return QuantityInStock;
+            }
+            else
+            {
+                Allocated = QuantityOrder;
+                return QuantityOrder;
+            }
+        }
 
     }
 }
