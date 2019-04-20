@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ShopManager.Data;
 using ShopManager.Models;
+using ShopManager.UI.Invoice.ViewModel;
 
 namespace ShopManager.UI.Invoice.Repository
 {
@@ -96,8 +97,16 @@ namespace ShopManager.UI.Invoice.Repository
             return await _context.CashCustomers.ToListAsync();
         }
 
-        
-
-
+        public async Task<List<SelectAccountToInsert>> GetAccountCustomersSelectAsync()
+        {
+            var ResultAccountCustomers = await(from Acc in _context.AccountCustomers
+                                               orderby Acc.CustomerAc
+                                               select new SelectAccountToInsert
+                                               {
+                                                   Account = Acc.CustomerAc,
+                                                   Company = Acc.CompanyName,
+                                               }).ToListAsync();
+            return ResultAccountCustomers;
+        }
     }
 }

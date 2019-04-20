@@ -1,4 +1,5 @@
 ﻿using ShopManager.Models;
+using ShopManager.UI.Invoice.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace ShopManager.UI.Invoice.Repository
         Task<Product> UpdateProductAsync(Product product);
 
         Task<List<AccountCustomer>> GetAccountCustomersAsync();
+        Task<List<SelectAccountToInsert>> GetAccountCustomersSelectAsync();
         Task<AccountCustomer> GetAccountCustomerAsync(string AccountNum);
 
         Task<List<CashCustomer>> GetCashCustomersAsync();

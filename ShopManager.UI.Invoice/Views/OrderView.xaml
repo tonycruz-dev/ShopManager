@@ -128,6 +128,11 @@
             </Grid.RowDefinitions>
             <DataGrid ItemsSource="{Binding OrderItems}"
                   AutoGenerateColumns="False"
+                  AlternatingRowBackground="FloralWhite"
+                  GridLinesVisibility="Horizontal" 
+                  HorizontalGridLinesBrush="#FFBEB9B9"
+                  AlternationCount="2"
+                  SelectionMode="Single"
                   CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding QTYOrder}"  Width="80" Header="Order"/>
@@ -185,7 +190,7 @@
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Order.TotalPaid, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,109,0" Grid.Row="1" TextWrapping="Wrap" Text="TOTAL:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <Button Content="Send Cash Invoice" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
-                <Button Content="Send Account Invoice" HorizontalAlignment="Left" Margin="195,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+                <Button Content="Send Account Invoice" Command="{Binding SendToAccountInvoiceCommand}" HorizontalAlignment="Left" Margin="195,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
                 <Button Content="Send Estimat" HorizontalAlignment="Left" Margin="380,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
                 <Button Content="Print" Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
             </Grid>

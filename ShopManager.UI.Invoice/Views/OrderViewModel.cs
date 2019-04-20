@@ -16,6 +16,7 @@ namespace ShopManager.UI.Invoice.Views
     {
         private IOrderRepository  _repo;
         private List<ProductDto> _allProducts;
+        private List<SelectAccountToInsert> _SelectedItemsToInsert;
         private readonly IMapper _mapper;
         private ObservableCollection<ProductDto> _products;
         private ObservableCollection<OrderItemDto> _orderItems;
@@ -34,6 +35,7 @@ namespace ShopManager.UI.Invoice.Views
             ClearSearchCommand = new RelayCommand(OnClearSearch);
             PrintRecordCommand = new RelayCommand(PrintRecord);
             EditOrderItemCommand = new RelayCommand<OrderItemDto>(OnEditOrder);
+            SendToAccountInvoiceCommand = new RelayCommand(OnSendToAccountInvoice);
             SetOrder();
         }
 
@@ -59,6 +61,14 @@ namespace ShopManager.UI.Invoice.Views
             OrderItems = new ObservableCollection<OrderItemDto>();
         }
         // Properties
+        // List<SelectAccountToInsert> _SelectedItemsToInsert;
+
+        public List<SelectAccountToInsert> SelectedItemsToInsert
+        {
+            get { return _SelectedItemsToInsert; }
+            set { SetProperty(ref _SelectedItemsToInsert, value); }
+        }
+
         public ObservableCollection<ProductDto> Products
         {
             get { return _products; }
@@ -121,6 +131,7 @@ namespace ShopManager.UI.Invoice.Views
         public RelayCommand<ProductDto> AddProductOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> RemoveOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> EditOrderItemCommand { get; private set; }
+        public RelayCommand SendToAccountInvoiceCommand { get; private set; }
         public RelayCommand PrintRecordCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
 
@@ -246,5 +257,15 @@ namespace ShopManager.UI.Invoice.Views
         }
     
 
+        private async void OnSendToAccountInvoice()
+        {
+            SelectedItemsToInsert = await _repo.GetAccountCustomersSelectAsync();
+            var frmToInsert = new FormSelectAccountToInsert(SelectedItemsToInsert);
+            if (frmToInsert.ShowDialog() == true)
+            {
+                Console.WriteLine(frmToInsert.SelectItem.Company);
+            }
+
+        }
     }
 }
