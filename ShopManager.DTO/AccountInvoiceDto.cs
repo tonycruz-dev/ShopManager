@@ -311,6 +311,6 @@ namespace ShopManager.DTO
         }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<AccountInvoiceDetail> AccountInvoiceDetails { get; set; }
+        public List<AccountInvoiceDetailDto> AccountInvoiceDetails { get; set; }
     }
 }

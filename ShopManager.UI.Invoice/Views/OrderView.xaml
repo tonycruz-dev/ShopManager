@@ -211,21 +211,6 @@
             </Grid>
         </Grid>
         <!--commet end-->
-        <!--<DataGrid ItemsSource="{Binding OrderItems}"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  Grid.Column="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding QTYOrder}"  Width="80" Header="Order"/>
-                <DataGridTextColumn Binding="{Binding Quantity}"  Width="80" Header="Qty"/>
-                <DataGridTextColumn Binding="{Binding Shortage}"  Width="80" Header="Short"/>
-                <DataGridTextColumn Binding="{Binding ProductID}"  Width="100" Header="Code"/>
-                <DataGridTextColumn Binding="{Binding Description}"  Width="*" Header="Description"/>
-                <DataGridTextColumn Binding="{Binding UnitPrice, StringFormat={}{0:C},ConverterCulture=en-GB}" CellStyle="{StaticResource DataGridAlignToRightRowStyle}" Width="90" Header="Price"/>
-                <DataGridTextColumn Binding="{Binding Discount}"  Width="70" Header="Dis%"/>
-                <DataGridTextColumn Binding="{Binding TotalPrice, StringFormat={}{0:C},ConverterCulture=en-GB}" CellStyle="{StaticResource DataGridAlignToRightRowStyle}" Width="100" Header="Total"/>
-
-            </DataGrid.Columns>
-        </DataGrid>-->
+       
     </Grid>
 </UserControl>

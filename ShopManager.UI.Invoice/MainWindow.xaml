@@ -6,72 +6,42 @@
         xmlns:local="clr-namespace:ShopManager.UI.Invoice"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        xmlns:order="clr-namespace:ShopManager.UI.Invoice.Views"
+        xmlns:views="clr-namespace:ShopManager.UI.Invoice.Views"
         Title="MainWindow" Height="900" Width="1350">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type order:OrderViewModel}">
-            <order:OrderView/>
+        <DataTemplate DataType="{x:Type views:OrderViewModel}">
+            <views:OrderView/>
         </DataTemplate>
-        <!--<DataTemplate DataType="{x:Type prod:AddEditProductViewModel}">
-            <prod:AddEditProductView/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type views:AccountInvoiceViewModel}">
+            <views:AccountInvoiceView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone Mode="PrimaryMid" Padding="16">
+        <materialDesign:ColorZone Mode="PrimaryMid" Padding="8" Height="66">
             <DockPanel>
-                <ToggleButton
-      Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
-      VerticalAlignment="Center"
-      DockPanel.Dock="Right" />
                 <StackPanel
       Orientation="Horizontal"
       materialDesign:RippleAssist.IsCentered="True">
                     <ToggleButton
         Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <materialDesign:ColorZone
-        Mode="Standard"
-        Padding="8 4 8 4"
-        CornerRadius="2"
-        Panel.ZIndex="1"
-        Margin="16 0 0 0"
-        materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition
-              Width="Auto" />
-                                <ColumnDefinition
-              Width="*" />
-                                <ColumnDefinition
-              Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Button  Style="{DynamicResource MaterialDesignToolButton}">
-                                <materialDesign:PackIcon
-              Kind="Magnify"
-              Opacity=".56" />
-                            </Button>
-                            <TextBox Grid.Column="1"
-            Margin="8 0 0 0"
-            materialDesign:HintAssist.Hint="Build a search bar"
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-            BorderThickness="0"
-            MinWidth="200"
-            VerticalAlignment="Center" />
-                            <Button Style="{DynamicResource MaterialDesignToolButton}"
-            Grid.Column="2">
-                                <materialDesign:PackIcon
-              Kind="Microphone"
-              Opacity=".56"
-              Margin="8 0 0 0" />
-                            </Button>
-                        </Grid>
-                    </materialDesign:ColorZone>
                     <Button Style="{DynamicResource MaterialDesignToolForegroundButton}"    Margin="8 0 0 0"
-        Panel.ZIndex="0">
-                        <materialDesign:PackIcon  Kind="Send" />                    </Button>
+        Panel.ZIndex="0"/>
+                    <Button Margin="2,9" Width="65" Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    CommandParameter="AccountInvoice"
+                    ToolTip="Invoices"
+                    Grid.Column="2" >
+                        <materialDesign:PackIcon Kind="Receipt" Height="30" Width="30" VerticalAlignment="Center" />
+                    </Button>
+                    <Button Margin="2" Width="76"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    CommandParameter="Orders"
+                    ToolTip="Create Order"
+                    Grid.Column="2" >
+                        <materialDesign:PackIcon Kind="ShoppingBasket" Height="30" Width="30" VerticalAlignment="Center" />
+                    </Button>
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>

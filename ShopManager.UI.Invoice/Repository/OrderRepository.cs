@@ -108,5 +108,10 @@ namespace ShopManager.UI.Invoice.Repository
                                                }).ToListAsync();
             return ResultAccountCustomers;
         }
+
+        public async Task<List<AccountInvoice>> GetAccountInvoicesAsync()
+        {
+            return await _context.AccountInvoices.Include(ac => ac.AccountInvoiceDetails).OrderByDescending(aob => aob.InvoiceId).ToListAsync();
+        }
     }
 }

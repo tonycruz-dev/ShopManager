@@ -2,6 +2,7 @@
 using ShopManager.DTO;
 using ShopManager.helper;
 using ShopManager.UI.Invoice.Forms;
+using ShopManager.UI.Invoice.Helpers;
 using ShopManager.UI.Invoice.Reports;
 using ShopManager.UI.Invoice.Repository;
 using ShopManager.UI.Invoice.ViewModel;
@@ -45,7 +46,6 @@ namespace ShopManager.UI.Invoice.Views
         {
             _allProducts = _mapper.Map<List<ProductDto>>(await _repo.GetProductsAsync());
             Products = new ObservableCollection<ProductDto>(_allProducts);
-
         }
 
         private void SetOrder()
@@ -127,16 +127,18 @@ namespace ShopManager.UI.Invoice.Views
 
         }
 
-        public RelayCommand<string> SubmitSearchCommand { get; private set; }
+       
         public RelayCommand<ProductDto> AddProductOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> RemoveOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> EditOrderItemCommand { get; private set; }
         public RelayCommand SendToAccountInvoiceCommand { get; private set; }
         public RelayCommand PrintRecordCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
+        public RelayCommand<string> SubmitSearchCommand { get; private set; }
 
         public event Action<ProductDto> AddProductOrderItemRequest = delegate { };
         public event Action<OrderItemDto> RemoveOrderItemRequest = delegate { };
+        public event Action Done = delegate { };
 
         private void OnAddToOrderItems(ProductDto product)
         {
@@ -263,8 +265,20 @@ namespace ShopManager.UI.Invoice.Views
             var frmToInsert = new FormSelectAccountToInsert(SelectedItemsToInsert);
             if (frmToInsert.ShowDialog() == true)
             {
-                Console.WriteLine(frmToInsert.SelectItem.Company);
+                var ac = await _repo.GetAccountCustomerAsync(frmToInsert.SelectItem.Account);
+                var accInvoice = CustomerInvoiceHelper.AccountCustomerToInvoice(ac, Order);
+                await _repo.AddAccountInvoiceAsync(accInvoice);
+                foreach (var item in OrderItems)
+                {
+                   var invDetails = CustomerInvoiceHelper.AccountCustomerToInvoiceDetails(accInvoice.InvoiceId, item);
+                   await _repo.AddAccountInvoiceDetailAsync(invDetails);
+                }
+                frmToInsert.Close();
+                SetOrder();
+                Done();
+
             }
+
 
         }
     }

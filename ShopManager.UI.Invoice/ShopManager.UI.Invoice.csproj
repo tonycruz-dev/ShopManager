@@ -134,12 +134,16 @@
     </ApplicationDefinition>
     <Compile Include="AutoMapperProfiles.cs" />
     <Compile Include="ContainerHelper.cs" />
+    <Compile Include="Design\FormUserControl.xaml.cs">
+      <DependentUpon>FormUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormChangeOrderQty.xaml.cs">
       <DependentUpon>FormChangeOrderQty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSelectAccountToInsert.xaml.cs">
       <DependentUpon>FormSelectAccountToInsert.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomerInvoiceHelper.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Reports\FormPrintPreview.xaml.cs">
       <DependentUpon>FormPrintPreview.xaml</DependentUpon>
@@ -155,10 +159,18 @@
     <Compile Include="ViewModel\ChangeOrderQuantity.cs" />
     <Compile Include="ViewModel\ReportsOrderModel.cs" />
     <Compile Include="ViewModel\SelectAccountToInsert.cs" />
+    <Compile Include="Views\AccountInvoiceView.xaml.cs">
+      <DependentUpon>AccountInvoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountInvoiceViewModel.cs" />
     <Compile Include="Views\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderViewModel.cs" />
+    <Page Include="Design\FormUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\FormChangeOrderQty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +192,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Reports\FormPrintPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,9 +235,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ShopManager.Data\ShopManager.Data.csproj">
       <Project>{1256B46F-3607-4013-A239-D27615B53D1E}</Project>

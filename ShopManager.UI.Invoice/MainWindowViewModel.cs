@@ -9,16 +9,17 @@ namespace ShopManager.UI.Invoice
     public class MainWindowViewModel: BindableBase
     {
         private OrderViewModel _orderViewModel;
+        private AccountInvoiceViewModel _accountInvoiceViewModel;
         private BindableBase _CurrentViewModel;
         public MainWindowViewModel()
         {
             NavCommand = new RelayCommand<string>(OnNav);
             _orderViewModel = ContainerHelper.Container.Resolve<OrderViewModel>();
-           // _addEditProductViewModel = ContainerHelper.Container.Resolve<AddEditProductViewModel>();
+            _accountInvoiceViewModel = ContainerHelper.Container.Resolve<AccountInvoiceViewModel>();
 
-           // _productListViewModel.AddProductRequest += NavToAddProduct;
-          //  _productListViewModel.EditProductRequest += NavToEditProduct;
-          //  _addEditProductViewModel.Done += NavToProductList;
+            // _productListViewModel.AddProductRequest += NavToAddProduct;
+            //  _productListViewModel.EditProductRequest += NavToEditProduct;
+              _orderViewModel.Done += NavToAccountInvoice;
 
         }
         public BindableBase CurrentViewModel
@@ -34,8 +35,8 @@ namespace ShopManager.UI.Invoice
         {
             switch (destination)
             {
-                case "Customers":
-                    CurrentViewModel = null;
+                case "AccountInvoice":
+                    CurrentViewModel = _accountInvoiceViewModel;
                     break;
                 case "Orders":
                 default:
@@ -54,6 +55,10 @@ namespace ShopManager.UI.Invoice
             //_addEditProductViewModel.EditMode = true;
             //_addEditProductViewModel.SetProduct(product);
             //CurrentViewModel = _addEditProductViewModel;
+        }
+        public void NavToAccountInvoice()
+        {
+            CurrentViewModel = _accountInvoiceViewModel;
         }
         public void NavToOrder()
         {

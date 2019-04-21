@@ -21,6 +21,7 @@ namespace ShopManager.UI.Invoice.Repository
         Task<CashCustomer> GetCashCustomerAsync(string AccountNum);
 
         Task<AccountInvoice> AddAccountInvoiceAsync(AccountInvoice invoice);
+        Task<List<AccountInvoice>> GetAccountInvoicesAsync();
         Task<AccountInvoiceDetail> AddAccountInvoiceDetailAsync(AccountInvoiceDetail invoiceDetails);
 
         Task<CashInvoice> AddCashInvoiceAsync(CashInvoice invoice);
