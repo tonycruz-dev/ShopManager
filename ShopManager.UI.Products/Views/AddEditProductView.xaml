@@ -6,98 +6,73 @@
              xmlns:local="clr-namespace:ShopManager.UI.Products.Views"
              xmlns:conv="clr-namespace:ShopManager.helper;assembly=ShopManager.helper"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800" FontSize="14">
+             d:DesignHeight="800" d:DesignWidth="800" FontSize="16">
     <UserControl.Resources>
         <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
         <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True" />
     </UserControl.Resources>
-    <Grid Margin="20" Background="AliceBlue" >
+    <Grid Background="Azure">
         <Grid.RowDefinitions>
-            <RowDefinition Height ="Auto" />
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="167*"/>
+            <RowDefinition Height="164*"/>
+            <RowDefinition Height="469*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="ProductGrid" VerticalAlignment= "Stretch" Margin="20" HorizontalAlignment="Stretch"  DataContext= "{Binding Product}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Label VerticalAlignment ="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ProductID"/>
-            <TextBox x:Name = "ProductID" VerticalAlignment="Stretch" Text="{Binding ProductID, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="0" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Product Name:"/>
-            <TextBox x:Name = "ProductName" VerticalAlignment="Stretch" Text="{Binding ProductName, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="1" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Product Code:"/>
-            <TextBox x:Name = "ProductCode" VerticalAlignment="Stretch" Text="{Binding ProductCode, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="2" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Category:"/>
-            <TextBox x:Name = "CategoryID" VerticalAlignment="Stretch" Text="{Binding CategoryID, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="3" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Price:"/>
-            <TextBox x:Name = "UnitPrice" VerticalAlignment="Stretch" Text="{Binding UnitPrice, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="4" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Cost:"/>
-            <TextBox x:Name = "UnitCost" VerticalAlignment="Stretch" Text="{Binding UnitCost, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="5" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Qty In Stock:"/>
-            <TextBox x:Name = "QtyInStock" VerticalAlignment="Stretch" Text="{Binding QtyInStock, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="6" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Qty Sold:"/>
-            <TextBox x:Name = "QtySold" VerticalAlignment="Stretch" Text="{Binding QtySold, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="7" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="8" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Qty On Order:"/>
-            <TextBox x:Name = "QtyOnOrder" VerticalAlignment="Stretch" Text="{Binding QtyOnOrder, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="8" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="9" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Sortage:"/>
-            <TextBox x:Name = "Sortage" VerticalAlignment="Stretch" Text="{Binding Sortage, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="9" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="10" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Discontinued:"/>
-            <TextBox x:Name = "Discontinued" VerticalAlignment="Stretch" Text="{Binding Discontinued, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="10" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="11" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Specifications:"/>
-            <TextBox x:Name = "Specifications" VerticalAlignment="Stretch" Text="{Binding Specifications, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="11" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="12" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Content Details:"/>
-            <TextBox x:Name = "ContentDetails" VerticalAlignment="Stretch" Text="{Binding ContentDetails, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="12" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="13" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Date Updated:"/>
-            <TextBox x:Name = "DateUpdated" VerticalAlignment="Stretch" Text="{Binding DateUpdated, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="13" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="14" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Modified Date:"/>
-            <TextBox x:Name = "ModifiedDate" VerticalAlignment="Stretch" Text="{Binding ModifiedDate, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="14" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="15" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Discount:"/>
-            <TextBox x:Name = "Discount" VerticalAlignment="Stretch" Text="{Binding Discount, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="15" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="16" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Group Name:"/>
-            <TextBox x:Name = "GroupName" VerticalAlignment="Stretch" Text="{Binding GroupName, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="16" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-            <Label VerticalAlignment ="Center" Grid.Row="17" Margin="3" HorizontalAlignment="Right" Grid.Column="0" Content="Supplier Discount:"/>
-            <TextBox x:Name = "SupplierDiscount" VerticalAlignment="Stretch" Text="{Binding SupplierDiscount, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True}" Grid.Row="17" Margin="3" Height="30" Grid.Column="1" HorizontalAlignment="Left" Width="500"/>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Button Content="Save" Command="{Binding SaveCommand}"
-            Visibility="{Binding EditMode, Converter = {StaticResource VisConverter}}"
-            Margin="25,5,0,0"
-            VerticalAlignment="Top"
-            Width="75"/>
-            <Button Content="Add"
-            Command="{Binding SaveCommand}"
-            Visibility="{Binding EditMode, Converter = {StaticResource NegVisConverter}}"
-            HorizontalAlignment="Left"
-            Margin="25, 5, 0, 0"
-            VerticalAlignment="Top"
-            Width="75" />
-            <Button Content="Cancel"
-            Command="{Binding CancelCommand}"
-            HorizontalAlignment="Left"
-            Margin="150, 5, 0, 0"
-            VerticalAlignment="Top"
-            Width="75" />
-        </Grid>
+        <Border Margin="24,10,10,10" BorderBrush="Gray" BorderThickness="0 0 0 0.5">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" Text="Product Code:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left" Height="30" Margin="124,0,0,0" TextWrapping="Wrap" Text="{Binding Product.ProductCode, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,39,0,0" TextWrapping="Wrap" Text="Product Name:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left" Height="30" Margin="124,35,0,0" TextWrapping="Wrap" Text="{Binding Product.ProductName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
+                <TextBlock HorizontalAlignment="Left" Margin="39,74,0,0" TextWrapping="Wrap" Text="Category:" VerticalAlignment="Top" Width="80" Height="30"/>
+                <ComboBox HorizontalAlignment="Left" Height="30" Margin="124,70,0,0" VerticalAlignment="Top" Width="400"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,109,0,0" TextWrapping="Wrap" Text="Group Name:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left" Height="30" Margin="124,105,0,0" TextWrapping="Wrap" Text="{Binding Product.GroupName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
+            </Grid>
+        </Border>
+        <Border Margin="24,10,10,29" Grid.Row="1" BorderBrush="Gray" BorderThickness="0 0 0 0.5">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="0,4,0,0" TextWrapping="Wrap" Text="Qty In Stock:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="124,0,0,0" TextWrapping="Wrap" Text="{Binding Product.QtyInStock, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="76"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="205,4,0,0" TextWrapping="Wrap" Text="Qty On Order:" VerticalAlignment="Top" Width="104" Height="30"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="314,0,0,0" TextWrapping="Wrap" Text="{Binding Product.QtyOnOrder, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="85"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="404,4,0,0" TextWrapping="Wrap" Text="Qty Sold:" VerticalAlignment="Top" Width="99" Height="30" RenderTransformOrigin="0.092,0.499"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="516,0,0,0" TextWrapping="Wrap" Text="{Binding Product.QtySold, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="71"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="592,4,0,0" TextWrapping="Wrap" Text="Sortage:" VerticalAlignment="Top" Width="74" Height="30" RenderTransformOrigin="0.092,0.499"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="682,0,0,0" TextWrapping="Wrap" Text="{Binding Product.Sortage, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="84"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="0,47,0,0" TextWrapping="Wrap" Text="Date Updated:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <DatePicker SelectedDate="{Binding Product.DateUpdated, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" HorizontalAlignment="Left" Margin="124,47,0,0" VerticalAlignment="Top" Width="185" Height="30"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="323,47,0,0" TextWrapping="Wrap" Text="Discount:" VerticalAlignment="Top" Width="76" Height="30"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="404,43,0,0" TextWrapping="Wrap" Text="{Binding Product.Discount, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="88"/>
+                <CheckBox Content="Discontinued" HorizontalAlignment="Left" IsChecked="{Binding Product.Discontinued}" Margin="555,50,0,0" VerticalAlignment="Top" Width="175" RenderTransformOrigin="0.241,0.504" Height="23"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="0,95,0,0" TextWrapping="Wrap" Text="Sales Price :" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="124,91,0,0" TextWrapping="Wrap" Text="{Binding Product.UnitPrice, ConverterCulture=en-GB, Mode=TwoWay, StringFormat=\{0:C\}, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="76"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="250,95,0,0" TextWrapping="Wrap" Text="Cost Price :" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="374,91,0,0" TextWrapping="Wrap" Text="{Binding Product.UnitCost, ConverterCulture=en-GB, Mode=TwoWay,StringFormat=\{0:C\}, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="96"/>
+            </Grid>
+        </Border>
+        <Border Margin="10,14,35,0" Grid.Row="2" BorderBrush="Gray" BorderThickness="0 0 0 0.5" Height="152" VerticalAlignment="Top">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="Wrap" Text="Note Details:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  Height="113" Margin="0,30,0,0" TextWrapping="Wrap" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" Text="{Binding Product.ContentDetails, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="360"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Left"  Margin="395,0,0,0" TextWrapping="Wrap" Text="Specifications:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBox HorizontalAlignment="Left" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  Height="113" Margin="395,30,0,0" TextWrapping="Wrap" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" Text="{Binding Product.Specifications, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="360"/>
+            </Grid>
+        </Border>
+        <Border Margin="10,185,16,0" Grid.Row="2" BorderBrush="Gray" BorderThickness="0 0 0 0.5" Height="59" VerticalAlignment="Top">
+            <Grid>
+                <Button Content="Cancel" Command="{Binding CancelCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Height="55"/>
+                <Button Content="Save" 
+                    Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource VisConverter}}"
+                    HorizontalAlignment="Left" Margin="569,0,0,0" VerticalAlignment="Top" Width="205" Height="55"/>
+                <Button Content="Add New"  Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource NegVisConverter}}" 
+                    HorizontalAlignment="Left" Margin="279,0,0,0" 
+                    VerticalAlignment="Top" Width="205" Height="55"/>
+
+            </Grid>
+        </Border>
+
     </Grid>
 
 </UserControl>

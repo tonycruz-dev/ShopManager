@@ -137,6 +137,9 @@
     <Compile Include="Design\FormUserControl.xaml.cs">
       <DependentUpon>FormUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DeleteForm.xaml.cs">
+      <DependentUpon>DeleteForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormChangeOrderQty.xaml.cs">
       <DependentUpon>FormChangeOrderQty.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
     </Compile>
     <Compile Include="Helpers\CustomerInvoiceHelper.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Messages\IMessageDialogServices.cs" />
+    <Compile Include="Messages\MessageDialogResult.cs" />
+    <Compile Include="Messages\MessageDialogServices.cs" />
     <Compile Include="Reports\FormPrintPreview.xaml.cs">
       <DependentUpon>FormPrintPreview.xaml</DependentUpon>
     </Compile>
@@ -168,6 +174,10 @@
     </Compile>
     <Compile Include="Views\OrderViewModel.cs" />
     <Page Include="Design\FormUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DeleteForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

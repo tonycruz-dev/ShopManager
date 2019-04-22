@@ -159,8 +159,14 @@ namespace ShopManager.UI.Invoice.Views
         }
         private void OnRemoveOrderItems(OrderItemDto item)
         {
-            OrderItems.Remove(item);
-            CalculateTotal();
+            var MessageToDisplay = "Remove Item " + item.ProductID;
+            var DeleteItemForm = new DeleteForm(MessageToDisplay);
+            if (DeleteItemForm.ShowDialog() == true)
+            {
+                OrderItems.Remove(item);
+                CalculateTotal();
+            }
+                
         }
         private void OnClearSearch()
         {

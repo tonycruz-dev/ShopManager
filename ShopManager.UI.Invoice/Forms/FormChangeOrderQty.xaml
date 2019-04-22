@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopManager.UI.Invoice.Forms"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Change Order Qty" Height="269.078" Width="239.863" FontSize="16" WindowStartupLocation="CenterScreen" >
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="34,38,0,0" TextWrapping="Wrap" Text="{Binding QuantityOrder}" VerticalAlignment="Top" Width="151"/>
