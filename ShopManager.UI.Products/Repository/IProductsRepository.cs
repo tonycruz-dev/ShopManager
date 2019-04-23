@@ -13,6 +13,7 @@ namespace ShopManager.UI.Products.Repository
         Task<Product> GeProductAsync(int Id);
         Task<Product> AddProductAsync(Product product);
         Task<Product> UpdateProductAsync(Product product);
+        Task<List<ProductCategory>> GetProductCategoriesAsync();
         Task DeleteProductAsync(int Id);
     }
 }

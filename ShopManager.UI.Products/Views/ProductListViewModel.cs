@@ -31,7 +31,9 @@ namespace ShopManager.UI.Products.Views
         {
             _allProducts = _mapper.Map<List<ProductDto>>(await _repo.GetProductsAsync());
             Products = new ObservableCollection<ProductDto>(_allProducts);
+            var pc = _mapper.Map<List<ProductCategoryDto>>(await _repo.GetProductCategoriesAsync());
 
+            ProductCategories = new ObservableCollection<ProductCategoryDto>(pc);
         }
  
         // Properties
@@ -49,7 +51,12 @@ namespace ShopManager.UI.Products.Views
                 FilterProduct(_searchInput);
             }
         }
-
+        private ObservableCollection<ProductCategoryDto> _productCategories;
+        public ObservableCollection<ProductCategoryDto> ProductCategories
+        {
+            get { return _productCategories; }
+            set { SetProperty(ref _productCategories, value); }
+        }
 
         // Commands
         public RelayCommand AddProductCommand { get; private set; }

@@ -28,6 +28,7 @@ namespace ShopManager.Data
         public virtual DbSet<SupplierOrderDetail> SupplierOrderDetails { get; set; }
         public virtual DbSet<SupplierOrder> SupplierOrders { get; set; }
         public virtual DbSet<SupplierProduct> SupplierProducts { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

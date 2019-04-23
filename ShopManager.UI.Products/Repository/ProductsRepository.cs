@@ -45,5 +45,10 @@ namespace ShopManager.UI.Products.Repository
             }
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<ProductCategory>> GetProductCategoriesAsync()
+        {
+            return await _context.ProductCategories.ToListAsync();
+        }
     }
 }

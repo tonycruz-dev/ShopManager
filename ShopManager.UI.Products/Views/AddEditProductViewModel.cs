@@ -5,6 +5,7 @@ using ShopManager.Models;
 using ShopManager.UI.Products.Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace ShopManager.UI.Products.Views
         private bool _EditMode;
         private readonly IProductsRepository _repo;
         private readonly IMapper _mapper;
+        private ObservableCollection<ProductCategoryDto> _productCategories;
         public AddEditProductViewModel(IProductsRepository repo, IMapper mapper)
         {
             _repo = repo;
@@ -36,6 +38,11 @@ namespace ShopManager.UI.Products.Views
             get { return _Product; }
             set { SetProperty(ref _Product, value); }
         }
+        public ObservableCollection<ProductCategoryDto> ProductCategories
+        {
+            get { return _productCategories; }
+            set { SetProperty(ref _productCategories, value); }
+        }
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand SaveCommand { get; private set; }
 
@@ -50,6 +57,10 @@ namespace ShopManager.UI.Products.Views
             Product = product;
             Product.ErrorsChanged += RaiseCanExecuteChanged;
             //CopyCustomer(cust, AccountCustomer);
+        }
+        public void SetCategories(ObservableCollection<ProductCategoryDto> Categories)
+        {
+            ProductCategories = Categories;
         }
         private void RaiseCanExecuteChanged(object sender, EventArgs e)
         {

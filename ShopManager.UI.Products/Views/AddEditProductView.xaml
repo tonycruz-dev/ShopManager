@@ -24,7 +24,7 @@
                 <TextBlock HorizontalAlignment="Left" Margin="0,39,0,0" TextWrapping="Wrap" Text="Product Name:" VerticalAlignment="Top" Width="119" Height="30"/>
                 <TextBox HorizontalAlignment="Left" Height="30" Margin="124,35,0,0" TextWrapping="Wrap" Text="{Binding Product.ProductName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
                 <TextBlock HorizontalAlignment="Left" Margin="39,74,0,0" TextWrapping="Wrap" Text="Category:" VerticalAlignment="Top" Width="80" Height="30"/>
-                <ComboBox HorizontalAlignment="Left" Height="30" Margin="124,70,0,0" VerticalAlignment="Top" Width="400"/>
+                <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding ProductCategories}" DisplayMemberPath="CategoryName" SelectedValuePath="CategoryId" SelectedValue="{Binding Product.CategoryID}"  Height="30" Margin="124,70,0,0" VerticalAlignment="Top" Width="400"/>
                 <TextBlock HorizontalAlignment="Left" Margin="0,109,0,0" TextWrapping="Wrap" Text="Group Name:" VerticalAlignment="Top" Width="119" Height="30"/>
                 <TextBox HorizontalAlignment="Left" Height="30" Margin="124,105,0,0" TextWrapping="Wrap" Text="{Binding Product.GroupName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
             </Grid>
@@ -42,7 +42,7 @@
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="0,47,0,0" TextWrapping="Wrap" Text="Date Updated:" VerticalAlignment="Top" Width="119" Height="30"/>
                 <DatePicker SelectedDate="{Binding Product.DateUpdated, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" HorizontalAlignment="Left" Margin="124,47,0,0" VerticalAlignment="Top" Width="185" Height="30"/>
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="323,47,0,0" TextWrapping="Wrap" Text="Discount:" VerticalAlignment="Top" Width="76" Height="30"/>
-                <TextBox HorizontalAlignment="Left"  Height="30" Margin="404,43,0,0" TextWrapping="Wrap" Text="{Binding Product.Discount, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="88"/>
+                <TextBox HorizontalAlignment="Left"  Height="30" Margin="404,43,0,0" TextWrapping="Wrap" Text="{Binding Product.Discount, Mode=TwoWay, StringFormat={}{0:p},ConverterCulture=en-GB,ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="88"/>
                 <CheckBox Content="Discontinued" HorizontalAlignment="Left" IsChecked="{Binding Product.Discontinued}" Margin="555,50,0,0" VerticalAlignment="Top" Width="175" RenderTransformOrigin="0.241,0.504" Height="23"/>
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Right" Margin="0,95,0,0" TextWrapping="Wrap" Text="Sales Price :" VerticalAlignment="Top" Width="119" Height="30"/>
                 <TextBox HorizontalAlignment="Left"  Height="30" Margin="124,91,0,0" TextWrapping="Wrap" Text="{Binding Product.UnitPrice, ConverterCulture=en-GB, Mode=TwoWay, StringFormat=\{0:C\}, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="76"/>

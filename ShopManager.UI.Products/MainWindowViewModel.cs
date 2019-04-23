@@ -57,6 +57,7 @@ namespace ShopManager.UI.Products
         private void NavToEditProduct(ProductDto product)
         {
             _addEditProductViewModel.EditMode = true;
+            _addEditProductViewModel.SetCategories(_productListViewModel.ProductCategories);
             _addEditProductViewModel.SetProduct(product);
             CurrentViewModel = _addEditProductViewModel;
         }

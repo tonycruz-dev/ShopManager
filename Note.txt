@@ -13,3 +13,33 @@ Install-Package Microsoft.SDK.Expression.Blend -Version 1.0.0
         <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
         <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True" />
   </UserControl.Resources>
+
+
+CREATE TABLE [dbo].[ProductCategories](
+	[CategoryId] [int] NOT NULL,
+	[CategoryName] [nvarchar](50) NOT NULL
+) ON [PRIMARY]
+
+Insert Into [ProductCategories] Values(23,'Category unknown')
+Insert Into [ProductCategories] Values(1,'BP49-BP - TDI')
+Insert Into [ProductCategories] Values(2,'BP03-BP - Traps')
+Insert Into [ProductCategories] Values(3,'BP15-BP Polystorm')
+Insert Into [ProductCategories] Values(4,'BP05-BP - Underground')
+Insert Into [ProductCategories] Values(5,'BP22-BP - Pre-Insulated Piping')
+Insert Into [ProductCategories] Values(6,'BP14-BP - Polysewer')
+Insert Into [ProductCategories] Values(7,'BP01-BP - Soil')
+Insert Into [ProductCategories] Values(8,'BP07-BP - Small MDPE')
+Insert Into [ProductCategories] Values(9,'BP17-BP - Polyguard')
+Insert Into [ProductCategories] Values(10,'BP09-BP - Polyplumb')
+Insert Into [ProductCategories] Values(11,'BP15-BP - Polystorm')
+Insert Into [ProductCategories] Values(12,'BP99-BP - Miscellaneous Products')
+Insert Into [ProductCategories] Values(13,'BP16-BP - Polyfit')
+Insert Into [ProductCategories] Values(14,'BP02-BP - Waste')
+Insert Into [ProductCategories] Values(15,'BP04-BP - Rainwater')
+Insert Into [ProductCategories] Values(16,'BP51-BP - Elegance Cast Iron Systems')
+Insert Into [ProductCategories] Values(17,'BP10-BP - Underfloor Heating')
+Insert Into [ProductCategories] Values(18,'BP21-BP - Polysure Press Fit Fittings')
+Insert Into [ProductCategories] Values(19,'BP07-BP Small MDPE')
+Insert Into [ProductCategories] Values(20,'BP18-BP - Loft Hatches')
+Insert Into [ProductCategories] Values(21,'BP06-BP - Civils')
+Insert Into [ProductCategories] Values(22,'BP08-BP - Large MDPE')
