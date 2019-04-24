@@ -137,6 +137,9 @@
     <Compile Include="Design\FormUserControl.xaml.cs">
       <DependentUpon>FormUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DiscountForm.xaml.cs">
+      <DependentUpon>DiscountForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DeleteForm.xaml.cs">
       <DependentUpon>DeleteForm.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
     <Page Include="Design\FormUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DiscountForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\DeleteForm.xaml">
       <SubType>Designer</SubType>

@@ -55,6 +55,7 @@
                   GridLinesVisibility="Horizontal" 
                   HorizontalGridLinesBrush="#FFBEB9B9" 
                   SelectionMode="Single"
+                  HeadersVisibility="Row"
                   Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*">

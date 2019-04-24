@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:ShopManager.UI.Products"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="850" Width="1000">
     <Window.Resources>
         <DataTemplate DataType="{x:Type prod:ProductListViewModel}">
             <prod:ProductListView/>
