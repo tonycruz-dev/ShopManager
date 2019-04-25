@@ -37,6 +37,7 @@ namespace ShopManager.UI.Invoice.Views
             PrintRecordCommand = new RelayCommand(PrintRecord);
             EditOrderItemCommand = new RelayCommand<OrderItemDto>(OnEditOrder);
             SendToAccountInvoiceCommand = new RelayCommand(OnSendToAccountInvoice);
+            DiscountOrderItemCommand = new RelayCommand<OrderItemDto>(OnDiscountOrderItem);
             SetOrder();
         }
 
@@ -131,6 +132,7 @@ namespace ShopManager.UI.Invoice.Views
         public RelayCommand<ProductDto> AddProductOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> RemoveOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> EditOrderItemCommand { get; private set; }
+        public RelayCommand<OrderItemDto> DiscountOrderItemCommand { get; private set; }
         public RelayCommand SendToAccountInvoiceCommand { get; private set; }
         public RelayCommand PrintRecordCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
@@ -248,13 +250,43 @@ namespace ShopManager.UI.Invoice.Views
             }
 
         }
+        private void OnDiscountOrderItem(OrderItemDto item)
+        {
+           
+            var MessageToDisplay = "Discount Item " + item.ProductID;
+            var DiscountItemForm = new DiscountForm(MessageToDisplay);
+            if (DiscountItemForm.ShowDialog() == true)
+            {
+                var disc = Convert.ToDouble(DiscountItemForm.TxtDiscount.Text);
+                item.Discount = Convert.ToSingle(disc/100);
+                
+                CalculateTotal();
+            }
+        }
+        //
         private void CalculateTotal()
         {
             decimal SumTotal = 0;
             foreach (var item in OrderItems)
             {
-                 item.SubTotal = item.Quantity * item.UnitPrice ?? default(decimal);
-                SumTotal = SumTotal + item.SubTotal;
+                //If discountValue <> 0 Then
+                if (item.Discount > 0)
+                {
+                    var up = item.UnitPrice ?? default(decimal);
+                    var qty = item.Quantity ?? default(int);
+                    var upqty = Convert.ToDecimal(up * qty);
+                    var dsc = Convert.ToSingle(1 - item.Discount);
+                    var discountedPrice = (decimal)dsc * upqty;
+
+                    item.SubTotal = discountedPrice;
+                    SumTotal = SumTotal + item.SubTotal;
+                }
+                else
+                {
+                    item.SubTotal = item.Quantity * item.UnitPrice ?? default(decimal);
+                    SumTotal = SumTotal + item.SubTotal;
+                }
+                
 
             }
             Order.TotalValue = SumTotal;

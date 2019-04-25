@@ -32,7 +32,7 @@
                 <materialDesign:PackIcon Height="48" Width="48" Kind="Percent" Foreground="Red" ></materialDesign:PackIcon>
             </materialDesign:ColorZone>
                 <TextBlock Margin="10 0 0 0" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Text="Sure Want to give?"/>
-                <TextBox x:Name="TxtDiscount" Margin="2" Width="240" TextChanged="TxtDiscount_TextChanged" KeyDown="TxtDiscount_KeyDown" />
+                <TextBox x:Name="TxtDiscount" Margin="2" Width="240" KeyDown="TxtDiscount_KeyDown" />
             </StackPanel>
         </Border>
         

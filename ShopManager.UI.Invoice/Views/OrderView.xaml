@@ -178,7 +178,13 @@
                                 <materialDesign:PackIcon  Kind="Basket" Foreground="SaddleBrown" />
                             </MenuItem.Icon>
                         </MenuItem>
-                       
+                        <MenuItem Header="Add Discount" 
+                                  Command="{Binding DiscountOrderItemCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon  Kind="Percent" Foreground="SaddleBrown" />
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
