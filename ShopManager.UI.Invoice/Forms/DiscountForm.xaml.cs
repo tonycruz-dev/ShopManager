@@ -23,6 +23,7 @@ namespace ShopManager.UI.Invoice.Forms
         {
             InitializeComponent();
             DisplayRecordeToDelete.Text = Message;
+            this.TxtDiscount.Focus();
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)

@@ -277,7 +277,7 @@ namespace ShopManager.UI.Invoice.Views
                     var upqty = Convert.ToDecimal(up * qty);
                     var dsc = Convert.ToSingle(1 - item.Discount);
                     var discountedPrice = (decimal)dsc * upqty;
-
+                    item.TotalPrice = discountedPrice;
                     item.SubTotal = discountedPrice;
                     SumTotal = SumTotal + item.SubTotal;
                 }

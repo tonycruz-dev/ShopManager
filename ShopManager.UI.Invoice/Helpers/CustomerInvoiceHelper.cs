@@ -19,7 +19,7 @@ namespace ShopManager.UI.Invoice.Helpers
             _AccountInvoice.CustomerAC = AcCustomer.CustomerAc;
             _AccountInvoice.JobAddress = order.JobAddress;
             _AccountInvoice.TotalPaid = order.TotalPaid;
-            _AccountInvoice.TotalVAT = order.TotalValue;
+            _AccountInvoice.TotalVAT = order.TotalVAT;
             _AccountInvoice.TotalValue = order.TotalValue;
             _AccountInvoice.InvoiceDate = DateTime.Now;
             _AccountInvoice.OrderNumber = order.OrderNumber;
