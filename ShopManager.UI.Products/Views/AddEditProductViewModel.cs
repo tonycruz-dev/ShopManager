@@ -56,7 +56,7 @@ namespace ShopManager.UI.Products.Views
             if (Product != null) Product.ErrorsChanged -= RaiseCanExecuteChanged;
             Product = product;
             Product.ErrorsChanged += RaiseCanExecuteChanged;
-            //CopyCustomer(cust, AccountCustomer);
+           
         }
         public void SetCategories(ObservableCollection<ProductCategoryDto> Categories)
         {
@@ -96,24 +96,6 @@ namespace ShopManager.UI.Products.Views
         {
             return !Product.HasErrors;
         }
-        //private void UpdateCustomer(AccountCustomerDto source)
-        //{
-        //    _customerToSave = new AccountCustomer();
-        //    var target = _customerToSave;
-        //    target.CustomerAc = source.CustomerAc;
-        //    target.CompanyName = source.CompanyName;
-        //    target.ContactName = source.ContactName;
-        //    target.Address1 = source.Address1;
-        //    target.address2 = source.Address2;
-        //    target.address3 = source.address3;
-        //    target.Address4 = source.Address4;
-        //    target.address5 = source.address5;
-        //    target.PostCode = source.PostCode;
-        //    target.Phone = source.Phone;
-        //    target.Fax = source.Fax;
-        //    target.Email = source.Email;
-        //    target.WebPage = source.WebPage;
-        //    target.NotePad = source.NotePad;
-        //}
+        
     }
 }
