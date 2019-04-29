@@ -93,7 +93,22 @@ namespace ShopManager.UI.Products.Views
         }
         private void OnAddProduct()
         {
-            AddProductRequest(new ProductDto());
+            var newProduct = new ProductDto();
+            newProduct.ProductCode = "";
+            newProduct.ProductName = "";
+            newProduct.UnitCost = 0;
+            newProduct.UnitPrice = 0;
+            newProduct.QtyInStock = 0;
+            newProduct.QtyOnOrder = 0;
+            newProduct.QtySold = 0;
+            newProduct.SupplierDiscount = 0;
+            newProduct.Specifications = "";
+            newProduct.ContentDetails = "";
+            newProduct.Discontinued = false;
+            newProduct.Discount = 0;
+            newProduct.GroupName = "";
+
+            AddProductRequest(newProduct);
         }
         private void OnEditProduct(ProductDto product)
         {

@@ -6,16 +6,16 @@
              xmlns:local="clr-namespace:ShopManager.UI.Products.Views"
              xmlns:conv="clr-namespace:ShopManager.helper;assembly=ShopManager.helper"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800" FontSize="16">
+             d:DesignHeight="580" d:DesignWidth="800" FontSize="16">
     <UserControl.Resources>
         <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
         <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True" />
     </UserControl.Resources>
     <Grid Background="Azure">
         <Grid.RowDefinitions>
-            <RowDefinition Height="167*"/>
-            <RowDefinition Height="164*"/>
-            <RowDefinition Height="469*"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border Margin="24,10,10,10" BorderBrush="Gray" BorderThickness="0 0 0 0.5">
             <Grid>

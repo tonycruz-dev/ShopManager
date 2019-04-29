@@ -92,6 +92,7 @@ namespace ShopManager.DTO
         {
             get
             {
+                
                 return _UnitCost;
             }
             set
