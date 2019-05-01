@@ -19,29 +19,27 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" MinHeight="76" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone Mode="PrimaryMid" Padding="8" Height="66">
+        <materialDesign:ColorZone Mode="PrimaryMid" Padding="8" Height="76">
             <DockPanel>
                 <StackPanel
       Orientation="Horizontal"
       materialDesign:RippleAssist.IsCentered="True">
-                    <ToggleButton
-        Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <Button Style="{DynamicResource MaterialDesignToolForegroundButton}"    Margin="8 0 0 0"
         Panel.ZIndex="0"/>
-                    <Button Margin="2,9" Width="65" Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    <Button  Width="73" Height="Auto" Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
                     CommandParameter="AccountInvoice"
                     ToolTip="Invoices"
                     Grid.Column="2" >
-                        <materialDesign:PackIcon Kind="Receipt" Height="30" Width="30" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="Receipt" Height="40" Width="40" VerticalAlignment="Center" />
                     </Button>
-                    <Button Margin="2" Width="76"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    <Button Margin="5,0,0,0" Width="76"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
                     CommandParameter="Orders"
                     ToolTip="Create Order"
-                    Grid.Column="2" >
-                        <materialDesign:PackIcon Kind="ShoppingBasket" Height="30" Width="30" VerticalAlignment="Center" />
+                    Grid.Column="2" Height="Auto" >
+                        <materialDesign:PackIcon Kind="ShoppingBasket" Height="50" Width="46" VerticalAlignment="Center" />
                     </Button>
                 </StackPanel>
             </DockPanel>
