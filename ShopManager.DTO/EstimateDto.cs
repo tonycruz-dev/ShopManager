@@ -32,6 +32,8 @@ namespace ShopManager.DTO
         private int? _statementId;
         private string _EmailAddress;
         private string _DateEstimateNum;
+        private List<EstimateDetailDto> _estimateDetails;
+
         public int EstimateId
         {
             get
@@ -283,6 +285,17 @@ namespace ShopManager.DTO
             set
             {
                 SetProperty(ref _DateEstimateNum, value);
+            }
+        }
+        public List<EstimateDetailDto> EstimateDetails
+        {
+            get
+            {
+                return _estimateDetails;
+            }
+            set
+            {
+                SetProperty(ref _estimateDetails, value);
             }
         }
     }

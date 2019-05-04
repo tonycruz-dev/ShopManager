@@ -37,6 +37,9 @@ namespace ShopManager.UI.Invoice.Views
             PrintRecordCommand = new RelayCommand(PrintRecord);
             EditOrderItemCommand = new RelayCommand<OrderItemDto>(OnEditOrder);
             SendToAccountInvoiceCommand = new RelayCommand(OnSendToAccountInvoice);
+            SendToCashInvoiceCommand = new RelayCommand(OnSendToCashInvoice);
+            SendToCashEstimateCommand = new RelayCommand(OnSendToCashEstimate);
+            SendToAccountEstimateCommand = new RelayCommand(OnSendToAccountEstimate);
             DiscountOrderItemCommand = new RelayCommand<OrderItemDto>(OnDiscountOrderItem);
             SetOrder();
         }
@@ -134,6 +137,9 @@ namespace ShopManager.UI.Invoice.Views
         public RelayCommand<OrderItemDto> EditOrderItemCommand { get; private set; }
         public RelayCommand<OrderItemDto> DiscountOrderItemCommand { get; private set; }
         public RelayCommand SendToAccountInvoiceCommand { get; private set; }
+        public RelayCommand SendToCashInvoiceCommand { get; private set; }
+        public RelayCommand SendToCashEstimateCommand { get; private set; }
+        public RelayCommand SendToAccountEstimateCommand { get; private set; }
         public RelayCommand PrintRecordCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
         public RelayCommand<string> SubmitSearchCommand { get; private set; }
@@ -141,6 +147,8 @@ namespace ShopManager.UI.Invoice.Views
         public event Action<ProductDto> AddProductOrderItemRequest = delegate { };
         public event Action<OrderItemDto> RemoveOrderItemRequest = delegate { };
         public event Action Done = delegate { };
+        public event Action DoneCash = delegate { };
+        public event Action DoneEstimate = delegate { };
 
         private void OnAddToOrderItems(ProductDto product)
         {
@@ -318,6 +326,66 @@ namespace ShopManager.UI.Invoice.Views
             }
 
 
+        }
+        private async void OnSendToCashInvoice()
+        {
+            SelectedItemsToInsert = await _repo.GetCashCustomersSelectAsync();
+            var frmToInsert = new FormSelectAccountToInsert(SelectedItemsToInsert);
+            if (frmToInsert.ShowDialog() == true)
+            {
+                var cc = await _repo.GetCashCustomerAsync(frmToInsert.SelectItem.Account);
+                var ccInvoice = CustomerInvoiceHelper.CashCustomerToInvoice(cc, Order);
+                await _repo.AddCashInvoiceAsync(ccInvoice);
+                foreach (var item in OrderItems)
+                {
+                    var invDetails = CustomerInvoiceHelper.CashCustomerToInvoiceDetails(ccInvoice.InvoiceID, item);
+                    await _repo.AddCashInvoiceDetailAsync(invDetails);
+                }
+                frmToInsert.Close();
+                SetOrder();
+                DoneCash();
+
+            }
+        }
+        private async void OnSendToCashEstimate()
+        {
+            SelectedItemsToInsert = await _repo.GetCashCustomersSelectAsync();
+            var frmToInsert = new FormSelectAccountToInsert(SelectedItemsToInsert);
+            if (frmToInsert.ShowDialog() == true)
+            {
+                var cc = await _repo.GetCashCustomerAsync(frmToInsert.SelectItem.Account);
+                var ccInvoice = CustomerInvoiceHelper.CashCustomerToEstimate(cc, Order);
+                await _repo.AddEstimateAsync(ccInvoice);
+                foreach (var item in OrderItems)
+                {
+                    var invDetails = CustomerInvoiceHelper.CashCustomerToEstimateDetails(ccInvoice.EstimateId, item);
+                    await _repo.AddEstimateDetailAsync(invDetails);
+                }
+                frmToInsert.Close();
+                SetOrder();
+                DoneEstimate();
+
+            }
+        }
+        private async void OnSendToAccountEstimate()
+        {
+            SelectedItemsToInsert = await _repo.GetAccountCustomersSelectAsync();
+            var frmToInsert = new FormSelectAccountToInsert(SelectedItemsToInsert);
+            if (frmToInsert.ShowDialog() == true)
+            {
+                var ac = await _repo.GetAccountCustomerAsync(frmToInsert.SelectItem.Account);
+                var ccInvoice = CustomerInvoiceHelper.AccountCustomerToEstimate(ac, Order);
+                await _repo.AddEstimateAsync(ccInvoice);
+                foreach (var item in OrderItems)
+                {
+                    var invDetails = CustomerInvoiceHelper.CashCustomerToEstimateDetails(ccInvoice.EstimateId, item);
+                    await _repo.AddEstimateDetailAsync(invDetails);
+                }
+                frmToInsert.Close();
+                SetOrder();
+                DoneEstimate();
+
+            }
         }
     }
 }

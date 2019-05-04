@@ -25,9 +25,12 @@ namespace ShopManager.UI.Invoice.Repository
         Task<AccountInvoiceDetail> AddAccountInvoiceDetailAsync(AccountInvoiceDetail invoiceDetails);
 
         Task<CashInvoice> AddCashInvoiceAsync(CashInvoice invoice);
+        Task<List<CashInvoice>> GetCashInvoiceAsync();
+        Task<List<SelectAccountToInsert>> GetCashCustomersSelectAsync();
         Task<CashInvoiceDetail> AddCashInvoiceDetailAsync(CashInvoiceDetail invoiceDetails);
 
         Task<Estimate> AddEstimateAsync(Estimate estimate);
         Task<EstimateDetail> AddEstimateDetailAsync(EstimateDetail estimateDetails);
+        Task<List<Estimate>> GetEstimateAsync();
     }
 }

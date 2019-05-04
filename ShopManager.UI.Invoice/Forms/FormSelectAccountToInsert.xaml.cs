@@ -31,7 +31,15 @@ namespace ShopManager.UI.Invoice.Forms
             SelecteSearch = new ObservableCollection< SelectAccountToInsert>(accinvoice);
             DataGridSelectedAccount.ItemsSource = SelecteSearch;
         }
-           
+
+        public FormSelectAccountToInsert(List<SelectAccountToInsert> accinvoice, string title)
+        {
+            InitializeComponent();
+            this.accinvoice = accinvoice;
+            this.Title = title;
+            SelecteSearch = new ObservableCollection<SelectAccountToInsert>(accinvoice);
+            DataGridSelectedAccount.ItemsSource = SelecteSearch;
+        }
 
         private void SearchText_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -39,7 +47,7 @@ namespace ShopManager.UI.Invoice.Forms
             SelecteSearch = new ObservableCollection<SelectAccountToInsert>(result);
             if (SelecteSearch.Count > 0)
             {
-                _SelectItem = SelecteSearch[0];
+                SelectItem = SelecteSearch[0];
             }
             
             DataGridSelectedAccount.ItemsSource = SelecteSearch;

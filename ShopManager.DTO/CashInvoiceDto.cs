@@ -35,6 +35,7 @@ namespace ShopManager.DTO
         private string _DateInvoiceNum;
         private string _PaymentDisplay;
         private bool? _IsClosed;
+        private List<CashInvoiceDetailDto> _cashInvoiceDetails;
 
         public int InvoiceID
         {
@@ -320,6 +321,17 @@ namespace ShopManager.DTO
             set
             {
                 SetProperty(ref _IsClosed, value);
+            }
+        }
+        public List<CashInvoiceDetailDto> CashInvoiceDetails
+        {
+            get
+            {
+                return _cashInvoiceDetails;
+            }
+            set
+            {
+                SetProperty(ref _cashInvoiceDetails, value);
             }
         }
     }

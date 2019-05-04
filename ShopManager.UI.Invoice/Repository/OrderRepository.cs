@@ -113,5 +113,27 @@ namespace ShopManager.UI.Invoice.Repository
         {
             return await _context.AccountInvoices.Include(ac => ac.AccountInvoiceDetails).OrderByDescending(aob => aob.InvoiceId).ToListAsync();
         }
+
+        public async Task<List<CashInvoice>> GetCashInvoiceAsync()
+        {
+            return await _context.CashInvoices.Include(ci => ci.CashInvoiceDetails).OrderByDescending(aob => aob.InvoiceID).ToListAsync();
+        }
+
+        public async Task<List<Estimate>> GetEstimateAsync()
+        {
+            return await _context.Estimates.Include(es => es.EstimateDetails).OrderByDescending(eso => eso.EstimateId).ToListAsync();
+        }
+
+        public async Task<List<SelectAccountToInsert>> GetCashCustomersSelectAsync()
+        {
+            var ResultAccountCustomers = await(from Acc in _context.CashCustomers
+                                               orderby Acc.CustomerAc
+                                               select new SelectAccountToInsert
+                                               {
+                                                   Account = Acc.CustomerAc,
+                                                   Company = Acc.CompanyName,
+                                               }).ToListAsync();
+            return ResultAccountCustomers;
+        }
     }
 }

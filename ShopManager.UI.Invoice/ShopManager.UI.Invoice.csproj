@@ -172,6 +172,14 @@
       <DependentUpon>AccountInvoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccountInvoiceViewModel.cs" />
+    <Compile Include="Views\CashInvoiceView.xaml.cs">
+      <DependentUpon>CashInvoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CashInvoiceViewModel.cs" />
+    <Compile Include="Views\EstimateView.xaml.cs">
+      <DependentUpon>EstimateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EstimateViewModel.cs" />
     <Compile Include="Views\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
@@ -213,6 +221,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AccountInvoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CashInvoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EstimateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

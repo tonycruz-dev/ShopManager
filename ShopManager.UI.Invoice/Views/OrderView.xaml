@@ -195,10 +195,11 @@
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,109,0" Grid.Row="1" TextWrapping="Wrap" Text="VAT:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Order.TotalPaid, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,109,0" Grid.Row="1" TextWrapping="Wrap" Text="TOTAL:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
-                <Button Content="Send Cash Invoice" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+                <Button Content="Send Cash Invoice" Command="{Binding SendToCashInvoiceCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
                 <Button Content="Send Account Invoice" Command="{Binding SendToAccountInvoiceCommand}" HorizontalAlignment="Left" Margin="195,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
-                <Button Content="Send Estimat" HorizontalAlignment="Left" Margin="380,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+                <Button Content="Send Account Estimat" Command="{Binding SendToAccountEstimateCommand}" HorizontalAlignment="Left" Margin="380,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
                 <Button Content="Print" Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180"/>
+                <Button Content="Send Cash Estimat" Command="{Binding SendToCashEstimateCommand}" HorizontalAlignment="Left" Margin="195,49,0,0" VerticalAlignment="Top" Width="180"/>
             </Grid>
             <Grid Grid.Row="2"  DataContext="{Binding Order}">
                 <Grid.ColumnDefinitions>
@@ -206,7 +207,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="91,10,0,0" TextWrapping="Wrap" Text="{Binding Id}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="Number:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
-                <TextBlock HorizontalAlignment="Left" Height="25" Margin="427,10,0,0" TextWrapping="Wrap" Text="{Binding OrderDate}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="427,10,0,0" TextWrapping="Wrap" Text="{Binding OrderDate,StringFormat={}{0:d},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="345,10,0,0" TextWrapping="Wrap" Text="Date:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,149,0" TextWrapping="Wrap" Text="Ref:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
                 <TextBox x:Name="OrderRef" HorizontalAlignment="Right" Height="25" Margin="0,10,5,0" TextWrapping="Wrap" FontSize="16" TextAlignment="Right" Text="Fix data" VerticalAlignment="Top" Width="126"/>

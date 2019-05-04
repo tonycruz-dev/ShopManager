@@ -75,7 +75,6 @@ namespace ShopManager.Models
         public bool? IsCheque { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Required]
         [StringLength(25)]
         public string InvoiceNumCount { get; set; }
 
@@ -83,7 +82,6 @@ namespace ShopManager.Models
         public string DateInvoiceNum { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Required]
         [StringLength(6)]
         public string PaymentDisplay { get; set; }
 

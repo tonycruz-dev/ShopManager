@@ -16,6 +16,12 @@
         <DataTemplate DataType="{x:Type views:AccountInvoiceViewModel}">
             <views:AccountInvoiceView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type views:CashInvoiceViewModel}">
+            <views:CashInvoiceView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type views:EstimateViewModel}">
+            <views:EstimateView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +37,7 @@
         Panel.ZIndex="0"/>
                     <Button  Width="73" Height="Auto" Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
                     CommandParameter="AccountInvoice"
-                    ToolTip="Invoices"
+                    ToolTip="Account Invoices"
                     Grid.Column="2" >
                         <materialDesign:PackIcon Kind="Receipt" Height="40" Width="40" VerticalAlignment="Center" />
                     </Button>
@@ -40,6 +46,18 @@
                     ToolTip="Create Order"
                     Grid.Column="2" Height="Auto" >
                         <materialDesign:PackIcon Kind="ShoppingBasket" Height="50" Width="46" VerticalAlignment="Center" />
+                    </Button>
+                    <Button Margin="5,0,0,0" Width="76"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    CommandParameter="CashInvoice"
+                    ToolTip="Cash Invoice"
+                    Grid.Column="2" Height="Auto" >
+                        <materialDesign:PackIcon Kind="CashMultiple"  Height="50" Width="46" VerticalAlignment="Center" />
+                    </Button>
+                    <Button Margin="5,0,0,0" Width="76"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    CommandParameter="Estimate"
+                    ToolTip="Estimate"
+                    Grid.Column="2" Height="Auto" >
+                        <materialDesign:PackIcon Kind="BoxVariant"  Height="50" Width="46" VerticalAlignment="Center" />
                     </Button>
                 </StackPanel>
             </DockPanel>

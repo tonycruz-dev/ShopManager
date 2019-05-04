@@ -1,4 +1,5 @@
 ﻿using ShopManager.helper;
+using System.Collections.Generic;
 
 namespace ShopManager.DTO
 {
@@ -20,6 +21,8 @@ namespace ShopManager.DTO
         private string _NotePad;
         private float? _CustomersDiscount;
         private bool? _Discontinued;
+        
+
         public string CustomerAc
         {
             get
@@ -196,6 +199,7 @@ namespace ShopManager.DTO
                 SetProperty(ref _Discontinued, value);
             }
         }
+        
     }
 
 }
