@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ShopManager.DTO;
 using ShopManager.helper;
+using ShopManager.UI.Invoice.Reports;
 using ShopManager.UI.Invoice.Repository;
+using ShopManager.UI.Invoice.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -109,7 +111,35 @@ namespace ShopManager.UI.Invoice.Views
 
         private void PrintRecord()
         {
-            throw new NotImplementedException();
+            List<ReportsOrderModel> ResultCashInvoice = new List<ReportsOrderModel>();
+            //Order.TotalValue ?? default(decimal);
+            foreach (var item in CashInvoiceDetails)
+            {
+                var rom = new ReportsOrderModel()
+                {
+                    Id = CashInvoice.InvoiceID,
+                    CustomerAC = CashInvoice.CustomerAC,
+                    OrderAddress = CashInvoice.InvoiceAddress,
+                    InvoiceDate = CashInvoice.InvoiceDate ?? default(DateTime),
+                    TotalValue = CashInvoice.TotalValue ?? default(decimal),
+                    VATValue = CashInvoice.TotalVAT ?? default(decimal),
+                    TotalVAT = CashInvoice.TotalPaid ?? default(decimal),
+                    JobAddress = CashInvoice.JobAddress,
+                    Description = item.Description,
+                    ProductID = item.ProductId,
+                    UnitPrice = item.UnitPrice ?? default(decimal),
+                    Quantity = item.Quantity ?? default(int),
+                    Discount = item.Discount,
+                    SubTotal = item.TotalPrice
+                };
+                ResultCashInvoice.Add(rom);
+            }
+            var _cashInvoiceRepot = new CashInvoiceReport();
+            _cashInvoiceRepot.SetDataSource(ResultCashInvoice);
+            var printReport = new FormPrintPreview();
+            printReport.ReportViewer.ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None;
+            printReport.ReportViewer.ViewerCore.ReportSource = _cashInvoiceRepot;
+            printReport.Show();
         }
 
         private void OnClearSearch()

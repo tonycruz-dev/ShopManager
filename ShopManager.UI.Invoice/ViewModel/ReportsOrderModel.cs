@@ -22,6 +22,7 @@ namespace ShopManager.UI.Invoice.ViewModel
         public string ProductID { get; set; }
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
+        public int QTYOrder {get;  set;}
         public double Discount { get; set; }
         public decimal SubTotal { get; set; }
     }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ShopManager.DTO;
 using ShopManager.helper;
+using ShopManager.UI.Invoice.Reports;
 using ShopManager.UI.Invoice.Repository;
+using ShopManager.UI.Invoice.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -110,7 +112,35 @@ namespace ShopManager.UI.Invoice.Views
 
         private void PrintRecord()
         {
-            throw new NotImplementedException();
+            List<ReportsOrderModel> ResultAccountInvoice = new List<ReportsOrderModel>();
+            //Order.TotalValue ?? default(decimal);
+            foreach (var item in AccountInvoiceDetails)
+            {
+                var rom = new ReportsOrderModel()
+                {
+                    Id = AcountInvoice.InvoiceId,
+                    CustomerAC = AcountInvoice.CustomerAC,
+                    OrderAddress = AcountInvoice.InvoiceAddress,
+                    InvoiceDate = AcountInvoice.InvoiceDate ?? default(DateTime),
+                    TotalValue = AcountInvoice.TotalValue ?? default(decimal),
+                    VATValue = AcountInvoice.TotalVAT ?? default(decimal),
+                    TotalVAT = AcountInvoice.TotalPaid ?? default(decimal),
+                    JobAddress = AcountInvoice.JobAddress,
+                    Description = item.Description,
+                    ProductID = item.ProductID,
+                    UnitPrice = item.UnitPrice ?? default(decimal),
+                    Quantity = item.Quantity ?? default(int),
+                    Discount = item.Discount,
+                    SubTotal = item.TotalPrice
+                };
+                ResultAccountInvoice.Add(rom);
+            }
+            var _accountInvoiceRepot = new AccountInvoiceReport();
+            _accountInvoiceRepot.SetDataSource(ResultAccountInvoice);
+            var printReport = new FormPrintPreview();
+            printReport.ReportViewer.ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None;
+            printReport.ReportViewer.ViewerCore.ReportSource = _accountInvoiceRepot;
+            printReport.Show();
         }
 
         private void OnClearSearch()
