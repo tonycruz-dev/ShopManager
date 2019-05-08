@@ -92,9 +92,9 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="350"/>
-                <RowDefinition Height="11*"/>
-                <RowDefinition Height="29*"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <DataGrid ItemsSource="{Binding CashInvoiceDetails}"
                   AutoGenerateColumns="False"
@@ -140,19 +140,20 @@
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,109,0" Grid.Row="1" TextWrapping="Wrap" Text="VAT:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding CashInvoice.TotalVAT, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,109,0" Grid.Row="1" TextWrapping="Wrap" Text="TOTAL:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
-                <Button Content="Print"  Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
-                <TextBlock HorizontalAlignment="Left" Margin="229,14,0,0" TextWrapping="Wrap" Text="Cash Invoice" FontSize="30" TextAlignment="Right" Width="267" Height="51" VerticalAlignment="Top"/>
-                <Button Content="@ Email" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="180"/>
+                <Button Content="Print"  Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="149" Height="40"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,14,208,0" TextWrapping="Wrap" Text="Cash Invoice" FontSize="30" TextAlignment="Right" Width="177" Height="51" VerticalAlignment="Top"/>
+                <Button Content="@ Email" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Width="149" Height="40"/>
+                <Button Content="Delivery Note"  Command="{Binding DeliveryNoteCommand}" HorizontalAlignment="Left" Margin="174,10,0,0" VerticalAlignment="Top" Width="149" Height="40"/>
             </Grid>
             <Grid Grid.Row="2">
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="92,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding CashInvoice.InvoiceID}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Number:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="428,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding CashInvoice.InvoiceDate,StringFormat={}{0:d},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="346,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Date:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
-                <TextBox HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding CashInvoice.InvoiceAddress}" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Width="341" Height="168" VerticalAlignment="Bottom"/>
-                <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,0,0,192" TextWrapping="Wrap" Text="Customer Details:" FontSize="16" TextAlignment="Right" VerticalAlignment="Bottom" Width="136"/>
-                <TextBox HorizontalAlignment="Right" Height="168" Margin="0,0,10,10" TextWrapping="Wrap" Text="{Binding CashInvoice.JobAddress}" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Bottom" Width="328"/>
-                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,0,202,192" TextWrapping="Wrap" Text="Delivery Address:" FontSize="16" TextAlignment="Right" VerticalAlignment="Bottom" Width="136"/>
+                <TextBox HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding CashInvoice.InvoiceAddress}" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Width="341" Height="114" VerticalAlignment="Bottom"/>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,0,0,129" TextWrapping="Wrap" Text="Customer Details:" FontSize="16" TextAlignment="Right" VerticalAlignment="Bottom" Width="136"/>
+                <TextBox HorizontalAlignment="Right" Height="114" Margin="0,0,10,10" TextWrapping="Wrap" Text="{Binding CashInvoice.JobAddress}" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Bottom" Width="328"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,0,202,129" TextWrapping="Wrap" Text="Delivery Address:" FontSize="16" TextAlignment="Right" VerticalAlignment="Bottom" Width="136"/>
             </Grid>
         </Grid>
     </Grid>

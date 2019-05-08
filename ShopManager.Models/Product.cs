@@ -40,6 +40,8 @@ namespace ShopManager.Models
 
         public bool Discontinued { get; set; }
 
+        public string BarCode { get; set; }
+
         public string Specifications { get; set; }
 
         public string ContentDetails { get; set; }

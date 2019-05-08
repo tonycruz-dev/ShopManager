@@ -92,9 +92,9 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="350"/>
-                <RowDefinition Height="11*"/>
-                <RowDefinition Height="29*"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <DataGrid ItemsSource="{Binding AccountInvoiceDetails}"
                   AutoGenerateColumns="False"
@@ -140,9 +140,10 @@
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,109,0" Grid.Row="1" TextWrapping="Wrap" Text="VAT:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding AcountInvoice.TotalPaid, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
                 <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,109,0" Grid.Row="1" TextWrapping="Wrap" Text="TOTAL:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
-                <Button Content="Print" Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
-                <TextBlock HorizontalAlignment="Left" Margin="229,14,0,0" TextWrapping="Wrap" Text="Account Invoice" FontSize="30" TextAlignment="Right" Width="267" Height="51" VerticalAlignment="Top"/>
-                <Button Content="@ Email"  HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="180"/>
+                <Button Content="Print" Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="180" Height="38"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,55,208,0" TextWrapping="Wrap" Text="Account Invoice" FontSize="30" TextAlignment="Right" Width="227" Height="51" VerticalAlignment="Top"/>
+                <Button Content="@ Email"  HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="180" Height="36"/>
+                <Button Content="Delivery Note" Command="{Binding DeliveryNoteCommand}" HorizontalAlignment="Left" Margin="195,10,0,0" VerticalAlignment="Top" Width="180" Height="38"/>
             </Grid>
             <Grid Grid.Row="2">
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="92,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding AcountInvoice.InvoiceId}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>

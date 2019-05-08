@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ShopManager.DTO;
 using ShopManager.helper;
+using ShopManager.UI.Invoice.Reports;
 using ShopManager.UI.Invoice.Repository;
+using ShopManager.UI.Invoice.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -109,7 +111,35 @@ namespace ShopManager.UI.Invoice.Views
 
         private void PrintRecord()
         {
-            throw new NotImplementedException();
+            List<ReportsOrderModel> ResultEstimate = new List<ReportsOrderModel>();
+            //Order.TotalValue ?? default(decimal);
+            foreach (var item in EstimateDetails)
+            {
+                var rom = new ReportsOrderModel()
+                {
+                    Id = Estimate.EstimateId,
+                    CustomerAC = Estimate.CustomerAC,
+                    OrderAddress = Estimate.EstimateAddress,
+                    InvoiceDate = Estimate.EstimateDate ?? default(DateTime),
+                    TotalValue = Estimate.TotalValue ?? default(decimal),
+                    VATValue = Estimate.TotalVAT ?? default(decimal),
+                    TotalVAT = Estimate.TotalPaid ?? default(decimal),
+                    JobAddress = Estimate.JobAddress,
+                    Description = item.Description,
+                    ProductID = item.ProductId,
+                    UnitPrice = item.UnitPrice ?? default(decimal),
+                    Quantity = item.Quantity ?? default(int),
+                    Discount = item.Discount,
+                    SubTotal = item.TotalPrice
+                };
+                ResultEstimate.Add(rom);
+            }
+            var _estimateReport = new EstimateReport();
+            _estimateReport.SetDataSource(ResultEstimate);
+            var printReport = new FormPrintPreview();
+            printReport.ReportViewer.ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None;
+            printReport.ReportViewer.ViewerCore.ReportSource = _estimateReport;
+            printReport.Show();
         }
 
         private void OnClearSearch()

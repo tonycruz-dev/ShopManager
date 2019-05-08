@@ -107,6 +107,10 @@ namespace ShopManager.UI.Products.Views
             newProduct.Discontinued = false;
             newProduct.Discount = 0;
             newProduct.GroupName = "";
+            newProduct.CategoryID = 23;
+            newProduct.BarCode = "";
+            newProduct.ModifiedDate = DateTime.Now;
+            newProduct.DateUpdated = DateTime.Now;
 
             AddProductRequest(newProduct);
         }

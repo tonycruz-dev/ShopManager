@@ -86,8 +86,12 @@ namespace ShopManager.UI.Products.Views
             else
             {
                 var productNew = new Product();
-                var mapAccountCustomer = _mapper.Map(Product, productNew);
-                await _repo.AddProductAsync(mapAccountCustomer);
+                var mapNewProduct = _mapper.Map(Product, productNew);
+                if (mapNewProduct.BarCode == null || mapNewProduct.BarCode =="")
+                {
+                    mapNewProduct.BarCode = Product.ProductCode;
+                }
+                await _repo.AddProductAsync(mapNewProduct);
             }
             Done();
 

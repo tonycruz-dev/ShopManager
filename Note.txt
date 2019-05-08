@@ -43,3 +43,8 @@ Insert Into [ProductCategories] Values(19,'BP07-BP Small MDPE')
 Insert Into [ProductCategories] Values(20,'BP18-BP - Loft Hatches')
 Insert Into [ProductCategories] Values(21,'BP06-BP - Civils')
 Insert Into [ProductCategories] Values(22,'BP08-BP - Large MDPE')
+
+add Product BarCode
+
+update [ShopManager].[dbo].[Products]
+  set [BarCode] = [ProductCode]

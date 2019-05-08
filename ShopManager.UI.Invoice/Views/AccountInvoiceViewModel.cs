@@ -31,7 +31,8 @@ namespace ShopManager.UI.Invoice.Views
             SubmitSearchCommand = new RelayCommand<string>(OnSearchInvoiceNum);
             ClearSearchCommand = new RelayCommand(OnClearSearch);
             PrintRecordCommand = new RelayCommand(PrintRecord);
-           
+            DeliveryNoteCommand = new RelayCommand(OnDeliveryNote);
+
         }
         public async void LoadAccountInvoice()
         {
@@ -105,6 +106,7 @@ namespace ShopManager.UI.Invoice.Views
         }
         // commands
         public RelayCommand PrintRecordCommand { get; private set; }
+        public RelayCommand DeliveryNoteCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
         public RelayCommand<string> SubmitSearchCommand { get; private set; }
 
@@ -142,7 +144,39 @@ namespace ShopManager.UI.Invoice.Views
             printReport.ReportViewer.ViewerCore.ReportSource = _accountInvoiceRepot;
             printReport.Show();
         }
-
+        private void OnDeliveryNote()
+        {
+            List<ReportsOrderModel> ResultAccountInvoice = new List<ReportsOrderModel>();
+            //Order.TotalValue ?? default(decimal);
+            foreach (var item in AccountInvoiceDetails)
+            {
+                var rom = new ReportsOrderModel()
+                {
+                    Id = AcountInvoice.InvoiceId,
+                    CustomerAC = AcountInvoice.CustomerAC,
+                    OrderAddress = AcountInvoice.InvoiceAddress,
+                    InvoiceDate = AcountInvoice.InvoiceDate ?? default(DateTime),
+                    TotalValue = AcountInvoice.TotalValue ?? default(decimal),
+                    VATValue = AcountInvoice.TotalVAT ?? default(decimal),
+                    TotalVAT = AcountInvoice.TotalPaid ?? default(decimal),
+                    JobAddress = AcountInvoice.JobAddress,
+                    Description = item.Description,
+                    ProductID = item.ProductID,
+                    QTYOrder = item.QTYOrder ?? default(int),
+                    UnitPrice = item.UnitPrice ?? default(decimal),
+                    Quantity = item.Quantity ?? default(int),
+                    Discount = item.Discount,
+                    SubTotal = item.TotalPrice
+                };
+                ResultAccountInvoice.Add(rom);
+            }
+            var _deliveryNote = new DeliveryNote();
+            _deliveryNote.SetDataSource(ResultAccountInvoice);
+            var printReport = new FormPrintPreview();
+            printReport.ReportViewer.ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None;
+            printReport.ReportViewer.ViewerCore.ReportSource = _deliveryNote;
+            printReport.Show();
+        }
         private void OnClearSearch()
         {
             throw new NotImplementedException();

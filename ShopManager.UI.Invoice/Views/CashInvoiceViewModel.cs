@@ -31,6 +31,7 @@ namespace ShopManager.UI.Invoice.Views
             SubmitSearchCommand = new RelayCommand<string>(OnSearchInvoiceNum);
             ClearSearchCommand = new RelayCommand(OnClearSearch);
             PrintRecordCommand = new RelayCommand(PrintRecord);
+            DeliveryNoteCommand = new RelayCommand(DeliveryNote);
         }
         public async void LoadCashInvoice()
         {
@@ -104,6 +105,7 @@ namespace ShopManager.UI.Invoice.Views
         }
         // commands
         public RelayCommand PrintRecordCommand { get; private set; }
+        public RelayCommand DeliveryNoteCommand { get; private set; }
         public RelayCommand ClearSearchCommand { get; private set; }
         public RelayCommand<string> SubmitSearchCommand { get; private set; }
 
@@ -122,11 +124,12 @@ namespace ShopManager.UI.Invoice.Views
                     OrderAddress = CashInvoice.InvoiceAddress,
                     InvoiceDate = CashInvoice.InvoiceDate ?? default(DateTime),
                     TotalValue = CashInvoice.TotalValue ?? default(decimal),
-                    VATValue = CashInvoice.TotalVAT ?? default(decimal),
-                    TotalVAT = CashInvoice.TotalPaid ?? default(decimal),
+                    VATValue = CashInvoice.VATValue ?? default(decimal),
+                    TotalVAT = CashInvoice.TotalVAT ?? default(decimal),
                     JobAddress = CashInvoice.JobAddress,
                     Description = item.Description,
                     ProductID = item.ProductId,
+                    QTYOrder = item.QTYOrder ?? default(int),
                     UnitPrice = item.UnitPrice ?? default(decimal),
                     Quantity = item.Quantity ?? default(int),
                     Discount = item.Discount,
@@ -141,7 +144,39 @@ namespace ShopManager.UI.Invoice.Views
             printReport.ReportViewer.ViewerCore.ReportSource = _cashInvoiceRepot;
             printReport.Show();
         }
-
+        private void DeliveryNote()
+        {
+            List<ReportsOrderModel> ResultCashInvoice = new List<ReportsOrderModel>();
+            //Order.TotalValue ?? default(decimal);
+            foreach (var item in CashInvoiceDetails)
+            {
+                var rom = new ReportsOrderModel()
+                {
+                    Id = CashInvoice.InvoiceID,
+                    CustomerAC = CashInvoice.CustomerAC,
+                    OrderAddress = CashInvoice.InvoiceAddress,
+                    InvoiceDate = CashInvoice.InvoiceDate ?? default(DateTime),
+                    TotalValue = CashInvoice.TotalValue ?? default(decimal),
+                    VATValue = CashInvoice.VATValue ?? default(decimal),
+                    TotalVAT = CashInvoice.TotalVAT ?? default(decimal),
+                    JobAddress = CashInvoice.JobAddress,
+                    Description = item.Description,
+                    ProductID = item.ProductId,
+                    QTYOrder = item.QTYOrder ?? default(int),
+                    UnitPrice = item.UnitPrice ?? default(decimal),
+                    Quantity = item.Quantity ?? default(int),
+                    Discount = item.Discount,
+                    SubTotal = item.TotalPrice
+                };
+                ResultCashInvoice.Add(rom);
+            }
+            var _deliveryNote = new DeliveryNote();
+            _deliveryNote.SetDataSource(ResultCashInvoice);
+            var printReport = new FormPrintPreview();
+            printReport.ReportViewer.ToggleSidePanel = SAPBusinessObjects.WPF.Viewer.Constants.SidePanelKind.None;
+            printReport.ReportViewer.ViewerCore.ReportSource = _deliveryNote;
+            printReport.Show();
+        }
         private void OnClearSearch()
         {
             SearchInput = null;

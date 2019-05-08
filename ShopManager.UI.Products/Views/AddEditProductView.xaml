@@ -13,11 +13,11 @@
     </UserControl.Resources>
     <Grid Background="Azure">
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="190"/>
             <RowDefinition Height="160"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Margin="24,10,10,10" BorderBrush="Gray" BorderThickness="0 0 0 0.5">
+        <Border Margin="24,5,5,5" BorderBrush="Gray" BorderThickness="0 0 0 0.5">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" Text="Product Code:" VerticalAlignment="Top" Width="119" Height="30"/>
                 <TextBox HorizontalAlignment="Left" Height="30" Margin="124,0,0,0" TextWrapping="Wrap" Text="{Binding Product.ProductCode, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
@@ -25,8 +25,11 @@
                 <TextBox HorizontalAlignment="Left" Height="30" Margin="124,35,0,0" TextWrapping="Wrap" Text="{Binding Product.ProductName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
                 <TextBlock HorizontalAlignment="Left" Margin="39,74,0,0" TextWrapping="Wrap" Text="Category:" VerticalAlignment="Top" Width="80" Height="30"/>
                 <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding ProductCategories}" DisplayMemberPath="CategoryName" SelectedValuePath="CategoryId" SelectedValue="{Binding Product.CategoryID}"  Height="30" Margin="124,70,0,0" VerticalAlignment="Top" Width="400"/>
-                <TextBlock HorizontalAlignment="Left" Margin="0,109,0,0" TextWrapping="Wrap" Text="Group Name:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,109,0,0" TextWrapping="Wrap" Text="Group Name:" VerticalAlignment="Top" Width="119" Height="30" TextAlignment="Right"/>
                 <TextBox HorizontalAlignment="Left" Height="30" Margin="124,105,0,0" TextWrapping="Wrap" Text="{Binding Product.GroupName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" Text="Product Code:" VerticalAlignment="Top" Width="119" Height="30"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,150,0,0" TextWrapping="Wrap" Text="Bar Code:" VerticalAlignment="Top" Width="119" Height="30" TextAlignment="Right"/>
+                <TextBox HorizontalAlignment="Left" Height="30" Margin="124,140,0,0" TextWrapping="Wrap" Text="{Binding Product.BarCode, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="400"/>
             </Grid>
         </Border>
         <Border Margin="24,10,10,0" Grid.Row="1" BorderBrush="Gray" BorderThickness="0 0 0 0.5" Height="144" VerticalAlignment="Top">

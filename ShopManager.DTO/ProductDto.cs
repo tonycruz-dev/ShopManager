@@ -145,6 +145,17 @@ namespace ShopManager.DTO
                 SetProperty(ref _Sortage, value);
             }
         }
+        private string _BarCode;
+
+        public string BarCode
+        {
+            get { return _BarCode; }
+            set
+            {
+              SetProperty(ref _BarCode , value);
+            }
+        }
+
         public bool Discontinued
         {
             get
