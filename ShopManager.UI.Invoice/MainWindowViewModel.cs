@@ -12,6 +12,7 @@ namespace ShopManager.UI.Invoice
         private AccountInvoiceViewModel _accountInvoiceViewModel;
         private CashInvoiceViewModel _cashInvoiceViewModel;
         private EstimateViewModel _estimateViewModel;
+        private SupplierOrderViewModel _supplierOrderViewModel;
         private BindableBase _CurrentViewModel;
         public MainWindowViewModel()
         {
@@ -20,6 +21,7 @@ namespace ShopManager.UI.Invoice
             _accountInvoiceViewModel = ContainerHelper.Container.Resolve<AccountInvoiceViewModel>();
             _cashInvoiceViewModel = ContainerHelper.Container.Resolve<CashInvoiceViewModel>();
             _estimateViewModel = ContainerHelper.Container.Resolve<EstimateViewModel>();
+            _supplierOrderViewModel = ContainerHelper.Container.Resolve<SupplierOrderViewModel>();
             // _productListViewModel.AddProductRequest += NavToAddProduct;
             //  _productListViewModel.EditProductRequest += NavToEditProduct;
             _orderViewModel.Done += NavToAccountInvoice;
@@ -46,6 +48,9 @@ namespace ShopManager.UI.Invoice
                 case "CashInvoice":
                     CurrentViewModel = _cashInvoiceViewModel;
                     break;
+                case "SupplierOrder":
+                    CurrentViewModel = _supplierOrderViewModel;
+                    break;
                 case "Estimate":
                     CurrentViewModel = _estimateViewModel;
                     break;
@@ -67,6 +72,10 @@ namespace ShopManager.UI.Invoice
             //_addEditProductViewModel.EditMode = true;
             //_addEditProductViewModel.SetProduct(product);
             //CurrentViewModel = _addEditProductViewModel;
+        }
+        public void NavToSupplierOrder()
+        {
+            CurrentViewModel = _supplierOrderViewModel;
         }
         public void NavToAccountInvoice()
         {

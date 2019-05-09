@@ -211,6 +211,10 @@
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderViewModel.cs" />
+    <Compile Include="Views\SupplierOrderView.xaml.cs">
+      <DependentUpon>SupplierOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupplierOrderViewModel.cs" />
     <Page Include="Design\FormUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupplierOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

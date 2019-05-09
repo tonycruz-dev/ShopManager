@@ -1,0 +1,220 @@
+﻿<UserControl x:Class="ShopManager.UI.Invoice.Views.SupplierOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopManager.UI.Invoice.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:helper ="clr-namespace:ShopManager.helper;assembly=ShopManager.helper"
+             d:DesignHeight="850" d:DesignWidth="1300">
+    <UserControl.Resources>
+        <Style x:Key="DataGridAlignToRightRowStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="TextBlock.TextAlignment" Value="Right" />
+        </Style>
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <ei:CallMethodAction TargetObject="{Binding}" MethodName="LoadProducts"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <StackPanel Orientation="Horizontal" Margin="5" materialDesign:RippleAssist.IsCentered="True">
+                    <materialDesign:ColorZone  Mode="PrimaryLight"   Padding="8 4 8 4" CornerRadius="2"   Panel.ZIndex="1" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Stretch" Width="440">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button  Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                            </Button>
+                            <TextBox Grid.Column="1" Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}" helper:EnterKeyHelpers.EnterKeyCommand="{Binding SubmitSearchCommand}" FontSize="20" Margin="2" materialDesign:HintAssist.Hint="Search Product"  materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0" MinWidth="200" VerticalAlignment="Center" Height="32" />
+                            <Button Command="{Binding ClearSearchCommand}" Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
+                                <materialDesign:PackIcon Kind="Clear"  Opacity=".56" Margin="8 0 0 0" />
+                            </Button>
+                            <Button Command="{Binding PrintRecordCommand }" Style="{DynamicResource MaterialDesignRaisedButton}" ToolTip="Add New Product" Grid.Column="3">
+                                <materialDesign:PackIcon Kind="Printer"/>
+                            </Button>
+
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+            </Grid>
+            <DataGrid ItemsSource="{Binding Products}"
+                  AutoGenerateColumns="False"
+                  EnableRowVirtualization="True"
+                  IsReadOnly="True"
+                  HorizontalAlignment="Stretch"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  VerticalAlignment="Stretch"  
+                  AlternatingRowBackground="LemonChiffon"  
+                  AlternationCount="2"
+                  GridLinesVisibility="Horizontal" 
+                  HorizontalGridLinesBrush="#FFBEB9B9" 
+                  SelectionMode="Single"
+                  HeadersVisibility="Row"
+                  Grid.Row="1">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ProductCode}" FontSize="12" FontWeight="Medium" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding ProductName}" FontSize="12" FontWeight="Medium" Margin="15 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Qty(" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding QtyInStock}" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Text=")" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding UnitCost, StringFormat={}{0:C},ConverterCulture=en-GB}" FontSize="12" FontWeight="Medium" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Add"
+                                    Command="{Binding DataContext.AddProductOrderItemCommand, 
+                                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"
+                                    Margin="2" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <!--Comment start-->
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <DataGrid ItemsSource="{Binding OrderItems}"
+                  AutoGenerateColumns="False"
+                  AlternatingRowBackground="FloralWhite"
+                  GridLinesVisibility="Horizontal" 
+                  HorizontalGridLinesBrush="#FFBEB9B9"
+                  AlternationCount="2"
+                  SelectionMode="Single"
+                  CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding QTYOrder}"  Width="80" Header="Order"/>
+                    <DataGridTextColumn Binding="{Binding Quantity}"  Width="80" Header="Qty"/>
+                    <DataGridTextColumn Binding="{Binding Shortage}" IsReadOnly="True" Width="80" Header="Short"/>
+                    <DataGridTextColumn Binding="{Binding ProductID}" IsReadOnly="True" Width="100" Header="Code"/>
+                    <DataGridTextColumn Binding="{Binding Description}" IsReadOnly="True"  Width="*" Header="Description"/>
+                    <DataGridTemplateColumn Width="90" Header="Price">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UnitPrice, StringFormat={}{0:C},ConverterCulture=en-GB}" TextAlignment="Right"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="70" Header="Dis%">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Discount, StringFormat={}{0:p},ConverterCulture=en-GB}" TextAlignment="Right"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100" Header="Total">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalPrice, StringFormat={}{0:C},ConverterCulture=en-GB}" TextAlignment="Right"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                        <MenuItem Header="Delete Item" 
+                                  Command="{Binding RemoveOrderItemCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon  Kind="DeleteForever" Foreground="Red" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Edit Basket" 
+                                  Command="{Binding EditOrderItemCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon  Kind="Basket" Foreground="SaddleBrown" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Add Discount" 
+                                  Command="{Binding DiscountOrderItemCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon  Kind="Percent" Foreground="SaddleBrown" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+            <Grid Grid.Row="1">
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Order.TotalValue, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="Lavender" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,109,0" Grid.Row="1" TextWrapping="Wrap" Text="Total Net:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Order.TotalVAT, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,40,109,0" Grid.Row="1" TextWrapping="Wrap" Text="VAT:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Order.TotalPaid, StringFormat={}{0:C},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,70,109,0" Grid.Row="1" TextWrapping="Wrap" Text="TOTAL:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="99"/>
+                <Button Content="Send Supplier Order" Command="{Binding SendToCashInvoiceCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="190"/>
+                <Button Content="Print" Command="{Binding PrintRecordCommand}" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="190"/>
+            </Grid>
+            <Grid Grid.Row="2"  DataContext="{Binding Order}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="91,10,0,0" TextWrapping="Wrap" Text="{Binding Id}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="Number:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="427,10,0,0" TextWrapping="Wrap" Text="{Binding OrderDate,StringFormat={}{0:d},ConverterCulture=en-GB}" Background="WhiteSmoke" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="135"/>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="345,10,0,0" TextWrapping="Wrap" Text="Date:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,10,149,0" TextWrapping="Wrap" Text="Ref:" FontSize="16" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+                <TextBox x:Name="OrderRef" HorizontalAlignment="Right" Height="25" Margin="0,10,5,0" TextWrapping="Wrap" FontSize="16" TextAlignment="Right" Text="Fix data" VerticalAlignment="Top" Width="126"/>
+                <TextBox HorizontalAlignment="Left" Height="143" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding Address}" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Bottom" Width="330"/>
+                <TextBlock HorizontalAlignment="Left" Height="25" Margin="10,0,0,158" TextWrapping="Wrap" Text="Customer Details:" FontSize="16" TextAlignment="Left" VerticalAlignment="Bottom" Width="136"/>
+                <TextBox HorizontalAlignment="Right" Height="143" Margin="0,0,5,10" TextWrapping="Wrap" Text="{Binding JobAddress}" FontSize="16" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Bottom" Width="330"/>
+                <TextBlock HorizontalAlignment="Right" Height="25" Margin="0,0,199,158" TextWrapping="Wrap" Text="Delivery Address:" FontSize="16" TextAlignment="Left" VerticalAlignment="Bottom" Width="136"/>
+            </Grid>
+        </Grid>
+        <!--commet end-->
+
+    </Grid>
+</UserControl>

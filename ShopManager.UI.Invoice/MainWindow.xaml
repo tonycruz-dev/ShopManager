@@ -22,6 +22,9 @@
         <DataTemplate DataType="{x:Type views:EstimateViewModel}">
             <views:EstimateView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type views:SupplierOrderViewModel}">
+            <views:SupplierOrderView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -58,6 +61,12 @@
                     ToolTip="Estimate"
                     Grid.Column="2" Height="Auto" >
                         <materialDesign:PackIcon Kind="BoxVariant"  Height="50" Width="46" VerticalAlignment="Center" />
+                    </Button>
+                    <Button Margin="5,0,0,0" Width="76"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding NavCommand}"
+                    CommandParameter="SupplierOrder"
+                    ToolTip="Suppliers Order"
+                    Grid.Column="2" Height="Auto" >
+                        <materialDesign:PackIcon Kind="TruckDelivery"  Height="50" Width="46" VerticalAlignment="Center" />
                     </Button>
                 </StackPanel>
             </DockPanel>
