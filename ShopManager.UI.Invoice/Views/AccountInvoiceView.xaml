@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <Grid>
                 <StackPanel Orientation="Horizontal" Margin="5" materialDesign:RippleAssist.IsCentered="True">
-                    <materialDesign:ColorZone  Mode="Accent"   Padding="8 4 8 4" CornerRadius="2"   Panel.ZIndex="1" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Stretch" Width="440">
+                    <materialDesign:ColorZone  Mode="PrimaryLight"   Padding="8 4 8 4" CornerRadius="2"   Panel.ZIndex="1" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Stretch" Width="440">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
