@@ -155,17 +155,54 @@ namespace ShopManager.UI.Invoice.Views
             var item = new OrderItemDto();
             item.ProductID = product.ProductCode;
             item.Description = product.ProductName;
+            var shot = ShortToOrder(product, 1);
+            var allocated = AllocatedToOrder(product, 1);
+            
             item.QTYOrder = 1;
-            item.Quantity = 1;
-            item.Shortage = 0;
+            item.Quantity = allocated;
+            
+            item.Shortage = shot;
             item.UnitPrice = product.UnitPrice;
             item.Discount = 0;
-            item.TotalPrice = product.UnitPrice;
+
+            item.TotalPrice = Convert.ToDecimal(product.UnitPrice * item.Quantity ?? default(int));
             item.StockId = product.ProductID;
             OrderItems.Add(item);
             CalculateTotal();
 
             //throw new NotImplementedException();
+        }
+        private int AllocatedToOrder(ProductDto product, int QtyOrder)
+        {
+
+            if (QtyOrder > product.QtyInStock)
+            {
+                
+                var qtyToReturn = product.QtyInStock ?? default(int);
+                product.QtyInStock = 0;
+                return qtyToReturn;
+            }
+            else
+            {
+                var itemLeftInstock = product.QtyInStock - QtyOrder;
+                product.QtyInStock = itemLeftInstock;
+                return QtyOrder;
+            }
+        }
+        private int ShortToOrder(ProductDto product, int QtyOrder)
+        {
+            var shortage = 0;
+            if(QtyOrder > product.QtyInStock)
+            {
+                shortage = QtyOrder - product.QtyInStock ?? default(int);
+                return shortage;
+            }
+            else
+            {
+                return shortage;
+            }
+              
+            //item.Shortage = EditOrderQuantity.QuantityOrder - EditOrderQuantity.Allocated;
         }
         private void OnRemoveOrderItems(OrderItemDto item)
         {
