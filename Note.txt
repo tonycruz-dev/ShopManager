@@ -48,3 +48,15 @@ add Product BarCode
 
 update [ShopManager].[dbo].[Products]
   set [BarCode] = [ProductCode]
+
+  
+CREATE TABLE [dbo].[ProductHistory](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[productId] int not null,
+	[ProductName] [nvarchar](max) NOT NULL,
+	[ProductCode] [nvarchar](50) NULL,
+	[UnitPrice] [money] NOT NULL,
+	[UnitCost] [money] NOT NULL,
+	[Specifications] [nvarchar](max) NULL,
+	[DateAction] [datetime] NULL,
+	[BarCode] [nvarchar](50) NULL)
