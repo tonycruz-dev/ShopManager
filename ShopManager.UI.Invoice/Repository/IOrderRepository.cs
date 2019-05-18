@@ -32,5 +32,10 @@ namespace ShopManager.UI.Invoice.Repository
         Task<Estimate> AddEstimateAsync(Estimate estimate);
         Task<EstimateDetail> AddEstimateDetailAsync(EstimateDetail estimateDetails);
         Task<List<Estimate>> GetEstimateAsync();
+
+        Task<List<SupplierAccount>> GetSupplierAccountAsync();
+        Task<SupplierOrder> AddSupplierOrderAsync(SupplierOrder supplierOrder);
+        Task<SupplierOrderDetail> AddSupplierOrderDetailAsync(SupplierOrderDetail supplierOrderDetail);
+        Task<List<SelectAccountToInsert>> GetSuppliersSelectAsync();
     }
 }

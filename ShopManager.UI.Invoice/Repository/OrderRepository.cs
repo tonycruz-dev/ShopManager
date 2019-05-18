@@ -135,5 +135,36 @@ namespace ShopManager.UI.Invoice.Repository
                                                }).ToListAsync();
             return ResultAccountCustomers;
         }
+
+        public Task<List<SupplierAccount>> GetSupplierAccountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<SupplierOrder> AddSupplierOrderAsync(SupplierOrder supplierOrder)
+        {
+            _context.SupplierOrders.Add(supplierOrder);
+            await _context.SaveChangesAsync();
+            return supplierOrder;
+        }
+
+        public async Task<SupplierOrderDetail> AddSupplierOrderDetailAsync(SupplierOrderDetail supplierOrderDetail)
+        {
+            _context.SupplierOrderDetails.Add(supplierOrderDetail);
+            await _context.SaveChangesAsync();
+            return supplierOrderDetail;
+        }
+
+        public async Task<List<SelectAccountToInsert>> GetSuppliersSelectAsync()
+        {
+            var ResultSuppliers = await(from Acc in _context.SupplierAccounts
+                                               orderby Acc.SupplierAc
+                                               select new SelectAccountToInsert
+                                               {
+                                                   Account = Acc.SupplierAc,
+                                                   Company = Acc.CompanyName,
+                                               }).ToListAsync();
+            return ResultSuppliers;
+        }
     }
 }

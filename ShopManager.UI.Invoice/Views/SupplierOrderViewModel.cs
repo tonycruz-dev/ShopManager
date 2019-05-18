@@ -141,17 +141,43 @@ namespace ShopManager.UI.Invoice.Views
             var item = new OrderItemDto();
             item.ProductID = product.ProductCode;
             item.Description = product.ProductName;
+            
+            var allocated = AllocatedToOrder(product, 1);
+
             item.QTYOrder = 1;
             item.Quantity = 1;
             item.Shortage = 0;
             item.UnitPrice = product.UnitCost;
             item.Discount = 0;
-            item.TotalPrice = product.UnitCost;
+            item.TotalPrice = Convert.ToDecimal(product.UnitCost * item.Quantity ?? default(int));
             item.StockId = product.ProductID;
             OrderItems.Add(item);
             CalculateTotal();
 
             //throw new NotImplementedException();
+        }
+        private int AllocatedToOrder(ProductDto product, int QtyOrder)
+        {
+
+           var itemOnOrder = product.QtyOnOrder + QtyOrder;
+           product.QtyOnOrder = itemOnOrder;
+           return QtyOrder;
+           
+        }
+        private int ShortToOrder(ProductDto product, int QtyOrder)
+        {
+            var shortage = 0;
+            if (QtyOrder > product.QtyInStock)
+            {
+                shortage = QtyOrder - product.QtyInStock ?? default(int);
+                return shortage;
+            }
+            else
+            {
+                return shortage;
+            }
+
+            //item.Shortage = EditOrderQuantity.QuantityOrder - EditOrderQuantity.Allocated;
         }
         private void OnRemoveOrderItems(OrderItemDto item)
         {
@@ -293,7 +319,7 @@ namespace ShopManager.UI.Invoice.Views
 
         private async void OnSendToAccountInvoice()
         {
-            SelectedItemsToInsert = await _repo.GetAccountCustomersSelectAsync();
+            SelectedItemsToInsert = await _repo.GetSuppliersSelectAsync();
             var frmToInsert = new FormSelectAccountToInsert(SelectedItemsToInsert);
             if (frmToInsert.ShowDialog() == true)
             {
